@@ -66,7 +66,7 @@ public class adapter_tampil_data extends RecyclerView.Adapter<adapter_tampil_dat
 
 
         Glide.with(ctx)
-                .load("http://192.168.43.109/adopsi/gambar/"+dm.getFotoHewan())
+                .load("http://192.168.56.1/adopsi/gambar/"+dm.getFotoHewan())
                 .apply(new RequestOptions()
                         .fitCenter()
                         .error(R.drawable.ic_map_black_48dp))

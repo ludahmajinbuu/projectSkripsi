@@ -99,9 +99,12 @@ public class detail_hewan extends AppCompatActivity {
 
         tampung = extras.getString("foto");
         id = extras.getString("id");
+        sharedpreferences = getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
+        session = sharedpreferences.getBoolean(session_status, false);
 
+        nik = sharedpreferences.getString(TAG_nis, null);
         Glide.with(this)
-                .load("http://192.168.43.109/adopsi/gambar/" + tampung)
+                .load("http://192.168.56.1/adopsi/gambar/" + tampung)
                 .centerCrop()
                 .into(imgHewandetail);
 
@@ -110,7 +113,7 @@ public class detail_hewan extends AppCompatActivity {
     @OnClick(R.id.btn_adop)
     public void order() {
         updatepass();
-        Toast.makeText(this, "permohonan adopsi berhasil dikirim", Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, "permohonan adopsi berhasil dikirim", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -120,7 +123,9 @@ public class detail_hewan extends AppCompatActivity {
         ApiRequest api2 = Retroserver.getClient().create(ApiRequest.class);
         Call<BaseResponse> update2 = api2.Update_hewan(
                 id,
-                status_kirim);
+                id,
+                nik,
+                "2");
 
         update2.enqueue(new Callback<BaseResponse>() {
             @Override

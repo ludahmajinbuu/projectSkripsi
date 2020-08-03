@@ -23,6 +23,7 @@ public interface Pelayanan_service {
     @POST("simpan_data_hewan.php")
     Call<BaseResponse> insert_data_anda_bukan_warga(
             @Field("nama") String nama,
+            @Field("nik") String nik,
             @Field("jenis") String jenis,
 
             @Field("kelamin") String kelamin,
@@ -32,6 +33,9 @@ public interface Pelayanan_service {
             @Field("steril") String steril,
             @Field("keterangan") String keterangan,
             @Field("fotoHewan") String foto);
+
+
+
 
 
 

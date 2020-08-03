@@ -124,6 +124,7 @@
                         </RelativeLayout>
 
                         <RelativeLayout
+                            android:id="@+id/btn_hewan_adopsi"
                             android:layout_width="match_parent"
                             android:layout_height="70dp"
                             android:layout_marginRight="25dp"
@@ -151,6 +152,7 @@
                         </RelativeLayout>
 
                         <RelativeLayout
+                            android:id="@+id/btn_sukses"
                             android:layout_width="match_parent"
                             android:layout_height="70dp"
                             android:layout_marginRight="25dp"
@@ -433,13 +435,13 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/btn_veri"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:baselineAligned="false"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:weightSum="1">
-
 
 
                 <androidx.cardview.widget.CardView
@@ -475,8 +477,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
-                            android:layout_marginBottom="9dp"
                             android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="9dp"
                             android:text="Verifikasi"
                             android:textColor="#000"
                             android:textSize="12sp"

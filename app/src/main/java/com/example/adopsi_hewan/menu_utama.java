@@ -1,6 +1,8 @@
  package com.example.adopsi_hewan;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -9,6 +11,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -40,6 +44,9 @@ import com.mobsandgeeks.saripaar.Validator;
      RelativeLayout btnTmbhL;
 
 
+     @BindView(R.id.btn_veri)
+     LinearLayout btn_veri;
+
 
 
 
@@ -54,9 +61,10 @@ import com.mobsandgeeks.saripaar.Validator;
 
      @OnClick(R.id.Layer_verifi)
      public void pindah() {
-         Intent intent = new Intent(menu_utama.this, verifikasi_admin.class);
+         Intent i=new Intent(menu_utama.this, hewan_baru.class);
+         i.putExtra("status","0");
+         startActivity(i);
 
-         startActivity(intent);
 
      }
 
@@ -70,11 +78,27 @@ import com.mobsandgeeks.saripaar.Validator;
 
      @OnClick(R.id.btnBruL)
      public void pindah3() {
-         Intent intent = new Intent(menu_utama.this, hewan_baru.class);
-
-         startActivity(intent);
+         Intent i=new Intent(menu_utama.this, hewan_baru.class);
+         i.putExtra("status","1");
+         startActivity(i);
 
      }
+
+     @OnClick(R.id.btn_hewan_adopsi)
+     public void btn_hewan_adopsi() {
+         Intent i=new Intent(menu_utama.this, hewan_baru.class);
+         i.putExtra("status","2");
+         startActivity(i);
+
+     }
+     @OnClick(R.id.btn_sukses)
+     public void btn_sukses() {
+         Intent i=new Intent(menu_utama.this, hewan_baru.class);
+         i.putExtra("status","3");
+         startActivity(i);
+
+     }
+
 
      @OnClick(R.id.btnprofil)
      public void pindah4() {
@@ -100,5 +124,11 @@ import com.mobsandgeeks.saripaar.Validator;
          txtnamaTmpil.setText(nama);
 
          ButterKnife.bind(this);
+
+         if (status.equals("user")){
+             btn_veri.setVisibility(View.GONE);
+         }else {
+             btn_veri.setVisibility(View.VISIBLE);
+         }
      }
 }

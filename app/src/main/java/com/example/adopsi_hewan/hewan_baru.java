@@ -52,7 +52,7 @@ public class hewan_baru extends AppCompatActivity {
     public final static String TAG_NAMA = "nama";
     String id,nik,nama;
 
-    String status;
+    String status,staus_hewan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +71,9 @@ public class hewan_baru extends AppCompatActivity {
         //card_tidak_ada_data.setVisibility(View.GONE);
         mSwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swifeRefresh);
 
+        Intent i=this.getIntent();
+        staus_hewan=i.getExtras().getString("status");
+        Toast.makeText(this, ""+staus_hewan, Toast.LENGTH_SHORT).show();
 
 
 
@@ -90,7 +93,21 @@ public class hewan_baru extends AppCompatActivity {
 
         ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
         // Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
-        Call<Response_hewan> call = api.Get_data_hewan();
+
+
+
+        Call<Response_hewan> call = null;
+
+        if (staus_hewan.equals("1")){
+            call =  api.Get_data_hewan();
+        }else if (staus_hewan.equals("2")){
+            call =  api.get_data_hewan_verifikasi_pemilik_hewan();
+        }else if (staus_hewan.equals("3")){
+            call =  api.get_data_hewan_suskes_adopsi();
+        }else {
+            call =  api.get_data_hewan_verifikasi_admin();
+        }
+
 
         call.enqueue(new Callback<Response_hewan>() {
             @Override

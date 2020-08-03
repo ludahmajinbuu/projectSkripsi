@@ -3,8 +3,11 @@ package com.example.adopsi_hewan;
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -70,23 +73,10 @@ public class menu_profil extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        Bundle extras = getIntent().getExtras();
 
-
-        txtNIKPro.setText(extras.getString("NIK"));
-        txtNmaPro.setText(extras.getString("nama"));
-        txtHPPro.setText(extras.getString("HP"));
-        txtEmaPro.setText(extras.getString("email"));
-        txtKelPro.setText(extras.getString("kelamin"));
-        txtKrjaPro.setText(extras.getString("kerjaan"));
-        txtAlaPro.setText(extras.getString("alamat"));
-        txtStsPro.setText(extras.getString("status"));
-
-        tampung = extras.getString("foto");
-        id = extras.getString("id");
 
         Glide.with(this)
-                .load("http://192.168.43.109/adopsi/potopro/" + tampung)
+                .load("http://192.168.56.1/adopsi/potopro/" + tampung)
                 .centerCrop()
                 .into(imgProPhto);
 
@@ -107,4 +97,42 @@ public class menu_profil extends AppCompatActivity {
 
     }
 
+
+    @OnClick(R.id.txtLogout)
+    public void pindah() {
+        SweetAlertDialog pDialog = new SweetAlertDialog(menu_profil.this, SweetAlertDialog.WARNING_TYPE);
+        pDialog.setTitleText("Apakah anda yakin ingin keluar ?");
+        pDialog.setCancelable(false);
+        pDialog.setConfirmText("Ya");
+        pDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                sweetAlertDialog.dismissWithAnimation();
+                //  String nik = txt_nik.getText().toString();
+
+                //    matikan_notif();
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putBoolean(menu_login.session_status, false);
+                editor.putString(TAG_nis, null);
+                editor.putString(TAG_NAMA, null);
+                editor.commit();
+
+                Intent intent = new Intent(menu_profil.this, menu_login.class);
+                finish();
+                startActivity(intent);
+                // TODO Auto-generated method stub
+                // update login session ke FALSE dan mengosongkan nilai id dan username
+            }
+        });
+        pDialog.setCancelButton("Tidak", new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sDialog) {
+                sDialog.dismissWithAnimation();
+            }
+        });
+        pDialog.setCanceledOnTouchOutside(false);
+        pDialog.show();
+
+
+    }
 }

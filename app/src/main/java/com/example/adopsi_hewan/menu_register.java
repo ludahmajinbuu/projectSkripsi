@@ -58,7 +58,7 @@ public class menu_register extends AppCompatActivity implements Validator.Valida
     EditText edit_konfir;
 
     Validator validator;
-    String url = "http://192.168.43.18/adopsi/";
+    String url = "http://192.168.56.1/adopsi/";
     ProgressDialog pd;
     String klik="";
     @BindView(R.id.btn_register)

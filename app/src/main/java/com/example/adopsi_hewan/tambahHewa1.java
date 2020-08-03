@@ -9,8 +9,10 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ClipData;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -141,7 +143,17 @@ public class tambahHewa1 extends AppCompatActivity implements Validator.Validati
     @NotEmpty(message = "Tanggal Lahir Tidak Boleh Kosong")
 
 
+    public static final String session_status = "session_status";
 
+    Boolean session = false;
+
+
+
+    public final static String TAG_nis = "nik_ambil";
+    public final static String TAG_STATUS = "status";
+    public final static String TAG_NAMA = "nama";
+    SharedPreferences sharedpreferences;
+    public static final String my_shared_preferences = "my_shared_preferences";
     Bitmap bitmap, decoded;
 
     int bitmap_size = 100; // image quality 1 - 100;
@@ -155,6 +167,7 @@ public class tambahHewa1 extends AppCompatActivity implements Validator.Validati
     final PermissionManager permissionManager = new PermissionManager();
 
     Calendar myCalendar;
+    String nik;
     DatePickerDialog.OnDateSetListener date;
 //    @BindView(R.id.textView12)
 //    TextView textView12;
@@ -166,6 +179,10 @@ public class tambahHewa1 extends AppCompatActivity implements Validator.Validati
 
         setContentView(R.layout.activity_tambah_hewan);
 
+        sharedpreferences = getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
+        session = sharedpreferences.getBoolean(session_status, false);
+
+        nik = sharedpreferences.getString(TAG_nis, null);
         ButterKnife.bind(this);
         pd = new ProgressDialog(tambahHewa1.this);
 
@@ -282,6 +299,7 @@ public class tambahHewa1 extends AppCompatActivity implements Validator.Validati
             Pelayanan_service api = Retroserver.getClient().create(Pelayanan_service.class);
             Call<BaseResponse> sendbio = api.insert_data_anda_bukan_warga(
                     txtnmaTbhHwan.getText().toString(),
+                    nik,
                     txtTbhJnsHwan.getText().toString(),
                     txtTbhJKHewan.getText().toString(),
                     txtTbhBrtHwan.getText().toString(),

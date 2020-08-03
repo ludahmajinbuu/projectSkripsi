@@ -25,10 +25,21 @@ public interface ApiRequest {
     @GET("data_materi.php")
     Call<Response_hewan> Get_data_hewan();
 
+    @GET("get_data_hewan_suskes_adopsi.php")
+    Call<Response_hewan> get_data_hewan_suskes_adopsi();
+
+    @GET("get_data_hewan_verifikasi_admin.php")
+    Call<Response_hewan> get_data_hewan_verifikasi_admin();
+
+    @GET("get_data_hewan_verifikasi_pemilik_hewan.php")
+    Call<Response_hewan> get_data_hewan_verifikasi_pemilik_hewan();
+
     @FormUrlEncoded
     @POST("updatehewan.php")
     Call<BaseResponse> Update_hewan(
             @Field("id") String id,
+            @Field("idHewan") String idHewan,
+            @Field("idUser") String idUser,
             @Field("status") String status);
 
     @GET("data_materi_admin.php")

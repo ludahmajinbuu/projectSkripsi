@@ -59,6 +59,7 @@
                 android:id="@+id/btn_lihat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/edit_pass"
                 app:layout_constraintEnd_toEndOf="@+id/edit_nis"
                 app:layout_constraintTop_toTopOf="@+id/edit_pass"
