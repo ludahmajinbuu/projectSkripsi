@@ -76,7 +76,7 @@ public class detail_hewan extends AppCompatActivity {
 
     String id,status_kirim;
 
-    String tampung,status_hewan;
+    String tampung,status_hewan,status_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +104,7 @@ public class detail_hewan extends AppCompatActivity {
         session = sharedpreferences.getBoolean(session_status, false);
 
         nik = sharedpreferences.getString(TAG_nis, null);
+        status_user = sharedpreferences.getString(TAG_STATUS, null);
         Glide.with(this)
                 .load("http://192.168.56.1/adopsi/gambar/" + tampung)
                 .centerCrop()
@@ -132,11 +133,25 @@ public class detail_hewan extends AppCompatActivity {
 
 
         ApiRequest api2 = Retroserver.getClient().create(ApiRequest.class);
-        Call<BaseResponse> update2 = api2.Update_hewan(
-                id,
-                id,
-                nik,
-                "2");
+        Call<BaseResponse> update2 = null;
+
+        if (status_user.equals("admin")){
+            update2=api2.Update_hewan(
+                    id,
+                    id,
+                    nik,
+                    "1");
+        }else {
+            update2=api2.Update_hewan(
+                    id,
+                    id,
+                    nik,
+                    "2");
+        }
+
+
+
+
 
         update2.enqueue(new Callback<BaseResponse>() {
             @Override

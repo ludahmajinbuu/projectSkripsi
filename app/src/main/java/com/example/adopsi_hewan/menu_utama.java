@@ -68,6 +68,14 @@ import com.mobsandgeeks.saripaar.Validator;
 
      }
 
+
+     @OnClick(R.id.btnCariL)
+     public void btnCariL() {
+         Intent intent = new Intent(menu_utama.this, menu_pencarian.class);
+
+         startActivity(intent);
+
+     }
      @OnClick(R.id.btnTmbhL)
          public void txt_register() {
              Intent intent = new Intent(menu_utama.this, tambahHewa1.class);

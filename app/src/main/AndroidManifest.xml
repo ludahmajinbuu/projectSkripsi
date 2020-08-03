@@ -25,7 +25,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".edit_profil"></activity>
+        <activity android:name=".menu_pencarian"></activity>
+        <activity android:name=".edit_profil" />
         <activity android:name=".hewan_baru" />
         <activity android:name=".verifikasi_admin" />
         <activity android:name=".tambahHewa1" />

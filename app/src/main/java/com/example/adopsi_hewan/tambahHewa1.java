@@ -172,6 +172,8 @@ public class tambahHewa1 extends AppCompatActivity implements Validator.Validati
 //    @BindView(R.id.textView12)
 //    TextView textView12;
 
+    String status_user;
+
     ProgressDialog pd;
     Validator validator;
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,6 +185,7 @@ public class tambahHewa1 extends AppCompatActivity implements Validator.Validati
         session = sharedpreferences.getBoolean(session_status, false);
 
         nik = sharedpreferences.getString(TAG_nis, null);
+
         ButterKnife.bind(this);
         pd = new ProgressDialog(tambahHewa1.this);
 
