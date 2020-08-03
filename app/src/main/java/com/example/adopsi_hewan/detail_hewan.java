@@ -76,7 +76,7 @@ public class detail_hewan extends AppCompatActivity {
 
     String id,status_kirim;
 
-    String tampung;
+    String tampung,status_hewan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +96,7 @@ public class detail_hewan extends AppCompatActivity {
         txtStrlHwanDtl.setText(extras.getString("steril"));
         txtVksinHwanDtl.setText(extras.getString("vaksin"));
         txtKtrHwanDtl.setText(extras.getString("keterangan"));
+        status_hewan=extras.getString("status");
 
         tampung = extras.getString("foto");
         id = extras.getString("id");
@@ -107,6 +108,16 @@ public class detail_hewan extends AppCompatActivity {
                 .load("http://192.168.56.1/adopsi/gambar/" + tampung)
                 .centerCrop()
                 .into(imgHewandetail);
+
+        if (status_hewan.equals("2")){
+            btn_adop.setText("SETUJUI");
+        }else if (status_hewan.equals("1")){
+            btn_adop.setText("ADOPSI");
+        }else if (status_hewan.equals("0")){
+            btn_adop.setText("SETUJUI");
+        }else {
+            btn_adop.setVisibility(View.GONE);
+        }
 
     }
 

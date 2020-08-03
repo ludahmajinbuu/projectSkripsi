@@ -149,6 +149,7 @@ public class adapter_tampil_data extends RecyclerView.Adapter<adapter_tampil_dat
             goInput.putExtra("foto", dm.getFotoHewan());
             goInput.putExtra("keterangan", dm.getKeterangan());
             goInput.putExtra("tgl", dm.getTgl());
+            goInput.putExtra("status", dm.getStatus());
             goInput.putExtra("nik", dm.getNik());
             goInput.putExtra("status", dm.getStatus());
 

@@ -222,7 +222,8 @@
                 android:layout_marginTop="8dp"
                 android:backgroundTint="#607D8B"
                 android:text="Order"
-                android:textColor="#fff" />
+                android:textColor="#fff"
+                android:visibility="gone" />
 
         </LinearLayout>
 
