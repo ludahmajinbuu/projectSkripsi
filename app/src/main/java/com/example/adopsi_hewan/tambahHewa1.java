@@ -383,6 +383,8 @@ public class tambahHewa1 extends AppCompatActivity implements Validator.Validati
     public void onValidationSucceeded() {
         insert_laporan();
        // update_no_hp();
+        //ade
+        Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
 
     }
 
