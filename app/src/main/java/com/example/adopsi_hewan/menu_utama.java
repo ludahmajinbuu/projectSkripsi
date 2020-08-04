@@ -76,6 +76,15 @@ import com.mobsandgeeks.saripaar.Validator;
          startActivity(intent);
 
      }
+
+     @OnClick(R.id.imgMShop)
+     public void imgMShop() {
+         Intent intent = new Intent(menu_utama.this, menu_toko_hewan.class);
+
+         startActivity(intent);
+
+     }
+
      @OnClick(R.id.btnTmbhL)
          public void txt_register() {
              Intent intent = new Intent(menu_utama.this, tambahHewa1.class);

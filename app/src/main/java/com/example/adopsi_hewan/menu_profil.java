@@ -1,21 +1,39 @@
 package com.example.adopsi_hewan;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
+import com.example.adopsi_hewan.model.profil.Response_profil;
+import com.example.adopsi_hewan.model.profil.ResultItem_profil;
+import com.example.adopsi_hewan.server.ApiRequest;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class menu_profil extends AppCompatActivity {
 
@@ -31,7 +49,7 @@ public class menu_profil extends AppCompatActivity {
 
     SharedPreferences sharedpreferences;
 
-
+    private List<ResultItem_profil> data = new ArrayList<ResultItem_profil>();
 
     @BindView(R.id.txtNIKPro)
     TextView txtNIKPro;
@@ -74,9 +92,9 @@ public class menu_profil extends AppCompatActivity {
         ButterKnife.bind(this);
 
 
-
+        GET_profil();
         Glide.with(this)
-                .load("http://192.168.56.1/adopsi/potopro/" + tampung)
+                .load("http://192.168.43.14/adopsi/potopro/" + tampung)
                 .centerCrop()
                 .into(imgProPhto);
 
@@ -92,7 +110,7 @@ public class menu_profil extends AppCompatActivity {
         status = sharedpreferences.getString(TAG_STATUS, null);
         nik = sharedpreferences.getString(TAG_nis, null);
         nama = sharedpreferences.getString(TAG_NAMA, null);
-
+        GET_profil();
 
 
     }
@@ -133,6 +151,135 @@ public class menu_profil extends AppCompatActivity {
         pDialog.setCanceledOnTouchOutside(false);
         pDialog.show();
 
+
+    }
+
+    public void GET_profil() {
+
+//        ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
+//        // Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+//
+//
+//
+//        Call<Response_profil> call =  api.profil("123");
+//
+//
+//
+//        call.enqueue(new Callback<Response_profil>() {
+//            @Override
+//            public void onResponse(Call<Response_profil> call, Response<Response_profil> response) {
+//
+//                try {
+//
+//
+//                    data = response.body().getResult();
+//
+//
+//
+//                    if (data.size()==0){
+//
+//                    }
+//                    else {
+//
+//                    }
+//                } catch (Exception e) {
+//                    Log.e("onResponse", "There is an error"+e);
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Response_profil> call, Throwable t) {
+//                t.printStackTrace();
+//
+//
+//            }
+//        });
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.43.14/adopsi/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ApiRequest service = retrofit.create(ApiRequest.class);
+
+        Call<Response_profil> call = service.profil(nik);
+
+        call.enqueue(new Callback<Response_profil>() {
+            @Override
+            public void onResponse(Call<Response_profil> call, Response<Response_profil> response) {
+
+                try {
+                    data = response.body().getResult();
+
+                    if (data.size()==0){
+
+                    }else {
+
+
+
+
+//                        txt_nama.setVisibility(View.VISIBLE);
+//                        txt_email.setVisibility(View.VISIBLE);
+//                        txt_opd.setVisibility(View.VISIBLE);
+//                        txt_username.setVisibility(View.VISIBLE);
+
+                        for (int i = 0; i < data.size(); i++) {
+                            Toast.makeText(menu_profil.this, ""+data.get(i).getAlamat(), Toast.LENGTH_SHORT).show();
+                            txtAlaPro.setText(data.get(i).getAlamat());
+                            txtEmaPro.setText(data.get(i).getEmail());
+                            txtHPPro.setText(data.get(i).getNohp());
+                            txtNmaPro.setText(data.get(i).getNama());
+                            txtNIKPro.setText(data.get(i).getNik());
+                            txtStsPro.setText(data.get(i).getStatusKwn());
+                            txtKrjaPro.setText(data.get(i).getPekerjaan());
+                            txtKelPro.setText(data.get(i).getJk());
+
+
+
+//                            txt_nama.setText("" + data.get(i).getNama());
+//                            txt_email.setText(""+data.get(i).getEmail());
+//                            foto=data.get(i).getFoto();
+//                            txt_opd.setText(""+data.get(i).getNamaOpd());
+//                            txt_username.setText(""+data.get(i).getUsername());
+                            Glide.with(menu_profil.this)
+                                    .load("http://192.168.43.14/adopsi/gambar/"+data.get(i).getFoto())
+                                    .listener(new RequestListener<Drawable>() {
+                                        @Override
+                                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                        //    progres_foto.setVisibility(View.GONE);
+                                            return false;
+                                        }
+
+                                        @Override
+                                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                          //  progres_foto.setVisibility(View.GONE);
+                                            return false;
+                                        }
+                                    })
+                                    .circleCrop()
+                                    .error(R.drawable.error_circle)
+                                    .into(imgProPhto);
+                        }
+                    }
+
+
+
+                    //  txt_alamat.setText("Kecamatann "+kec+" Kelurahan "+kel+" "+" Alamat "+alamat+" Rt "+rt);
+
+
+                } catch (Exception e) {
+                    Log.d("onResponse", "There is an error");
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Response_profil> call, Throwable t) {
+                t.printStackTrace();
+
+            }
+        });
 
     }
 }

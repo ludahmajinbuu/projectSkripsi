@@ -6,239 +6,256 @@
     android:layout_height="match_parent"
 
     android:orientation="vertical">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_gravity="center">
-        <LinearLayout
-            android:background="#757575"
-            android:layout_width="match_parent"
-            android:layout_height="350dp"
-            android:orientation="vertical">
-            <ImageView
-                android:id="@+id/imgProPhto"
-                android:layout_marginTop="45dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:src="@drawable/ic_account_box_black_48dp"/>
 
-            <TextView
-                android:id="@+id/txtNmaProTtl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:text="Devata Pixel"
-                android:textColor="#fff"
-                android:textSize="21sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#757575"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imgProPhto"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="45dp"
+            android:src="@drawable/ic_account_box_black_48dp" />
+
+        <TextView
+            android:id="@+id/txtNmaProTtl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="Devata Pixel"
+            android:textColor="#fff"
+            android:textSize="21sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
         android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginTop="140dp">
-        <LinearLayout
-            android:orientation="horizontal"
-            android:paddingLeft="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/uniquevisitor"/>
-            <TextView
-                android:id="@+id/txtNIKPro"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:text="NIK"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="25dp"
-            android:orientation="horizontal"
-            android:paddingLeft="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/ic_person_black_48dp"/>
-            <TextView
-                android:id="@+id/txtNmaPro"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:text="Nama"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="25dp"
-            android:orientation="horizontal"
-            android:paddingLeft="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/ic_phone_iphone_black_48dp"/>
-            <TextView
-                android:id="@+id/txtHPPro"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:text="No.HP"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="25dp"
-            android:orientation="horizontal"
-            android:paddingLeft="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/ic_email_black_48dp"/>
-            <TextView
-                android:id="@+id/txtEmaPro"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:text="Email"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="25dp"
-            android:orientation="horizontal"
-            android:paddingLeft="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/gender"/>
-            <TextView
-                android:id="@+id/txtKelPro"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:text="Kelamin"/>
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:orientation="horizontal"
-            android:paddingLeft="25dp">
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/ic_map_black_48dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="25dp">
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/uniquevisitor" />
+
+                <TextView
+                    android:id="@+id/txtNIKPro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:text="NIK"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:paddingLeft="25dp">
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/ic_person_black_48dp" />
+
+                <TextView
+                    android:id="@+id/txtNmaPro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:text="Nama"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:paddingLeft="25dp">
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/ic_phone_iphone_black_48dp" />
+
+                <TextView
+                    android:id="@+id/txtHPPro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:text="No.HP"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:paddingLeft="25dp">
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/ic_email_black_48dp" />
+
+                <TextView
+                    android:id="@+id/txtEmaPro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:text="Email"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:paddingLeft="25dp">
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/gender" />
+
+                <TextView
+                    android:id="@+id/txtKelPro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:text="Kelamin"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:paddingLeft="25dp">
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/ic_map_black_48dp" />
+
+                <TextView
+                    android:id="@+id/txtAlaPro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:text="Alamat"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:paddingLeft="25dp">
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/interlockingrings" />
+
+                <TextView
+                    android:id="@+id/txtStsPro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:text="Status Perkawinan"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:paddingLeft="25dp">
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/suitcase" />
+
+                <TextView
+                    android:id="@+id/txtKrjaPro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:text="Pekerjaan"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/txtAlaPro"
+                android:id="@+id/txtLogout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="10dp"
+                android:clickable="true"
                 android:paddingLeft="20dp"
-                android:text="Alamat"
+                android:text="LogOut"
                 android:textStyle="bold" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_marginTop="25dp"
-            android:orientation="horizontal"
-            android:paddingLeft="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/interlockingrings"/>
             <TextView
-                android:id="@+id/txtStsPro"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical"
+                android:id="@+id/txtgantiPW"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:text="Status Perkawinan"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="25dp"
-            android:orientation="horizontal"
-            android:paddingLeft="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/suitcase"/>
-            <TextView
-                android:id="@+id/txtKrjaPro"
-                android:textStyle="bold"
                 android:layout_gravity="center_vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:clickable="true"
+                android:paddingLeft="20dp"
+                android:text="Ganti Password"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtgantiHP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:clickable="true"
                 android:paddingLeft="20dp"
-                android:text="Pekerjaan"/>
+                android:text="ganti password"
+                android:textStyle="bold" />
+
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/txtLogout"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="10dp"
-            android:textStyle="bold"
-            android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:clickable="true"
-            android:text="LogOut"/>
-
-        <TextView
-            android:id="@+id/txtgantiPW"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:paddingLeft="20dp"
-            android:clickable="true"
-            android:text="Ganti Password"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txtgantiHP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:clickable="true"
-            android:paddingLeft="20dp"
-            android:text="ganti password"
-            android:textStyle="bold" />
-
-    </LinearLayout>
 
     </ScrollView>
 

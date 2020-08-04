@@ -106,7 +106,7 @@ public class detail_hewan extends AppCompatActivity {
         nik = sharedpreferences.getString(TAG_nis, null);
         status_user = sharedpreferences.getString(TAG_STATUS, null);
         Glide.with(this)
-                .load("http://192.168.56.1/adopsi/gambar/" + tampung)
+                .load("http://192.168.43.14/adopsi/gambar/" + tampung)
                 .centerCrop()
                 .into(imgHewandetail);
 

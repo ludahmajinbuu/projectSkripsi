@@ -4,8 +4,8 @@ package com.example.adopsi_hewan.server;
 import com.example.adopsi_hewan.model.BaseResponse;
 import com.example.adopsi_hewan.model.DataModel_register;
 import com.example.adopsi_hewan.model.model_tampil_hewan.Response_hewan;
-
-import java.util.List;
+import com.example.adopsi_hewan.model.profil.Response_profil;
+import com.example.adopsi_hewan.model.toko.Response_toko;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -30,6 +30,20 @@ public interface ApiRequest {
 
     @GET("get_data_hewan_verifikasi_admin.php")
     Call<Response_hewan> get_data_hewan_verifikasi_admin();
+
+    @GET("toko.php")
+    Call<Response_toko> toko(@Query("lat") String lat,
+                             @Query("lng") String lng);
+
+
+    @FormUrlEncoded
+    @POST("cari_hewan.php")
+    Call<Response_hewan> cari_hewan(
+            @Field("search") String search);
+
+    @GET("profil.php")
+    Call<Response_profil> profil(@Query("nik") String nik);
+
 
     @GET("get_data_hewan_verifikasi_pemilik_hewan.php")
     Call<Response_hewan> get_data_hewan_verifikasi_pemilik_hewan();
