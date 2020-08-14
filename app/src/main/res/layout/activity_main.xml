@@ -436,8 +436,8 @@
 
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="100dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="0.33"
@@ -483,7 +483,6 @@
             </LinearLayout>
 
 
-
             <LinearLayout
                 android:id="@+id/btn_veri"
                 android:layout_width="match_parent"
@@ -491,6 +490,7 @@
                 android:baselineAligned="false"
                 android:gravity="center"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:weightSum="1">
 
 

@@ -11,6 +11,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.http.Field;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -84,7 +85,8 @@ public class hewan_baru extends AppCompatActivity {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                get_laporan_selesai();
+
+                init_get_laporan_baru_saya();
             }
         });
     }
@@ -172,7 +174,7 @@ public class hewan_baru extends AppCompatActivity {
     public boolean checkInternet(){
         boolean connectStatus = true;
         ConnectivityManager ConnectionManager=(ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo=ConnectionManager.getActiveNetworkInfo();
+        @SuppressLint("MissingPermission") NetworkInfo networkInfo=ConnectionManager.getActiveNetworkInfo();
         if(networkInfo != null && networkInfo.isConnected()==true ) {
             connectStatus = true;
 

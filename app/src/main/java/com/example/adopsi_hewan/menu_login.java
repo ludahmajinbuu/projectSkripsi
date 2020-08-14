@@ -146,9 +146,9 @@ public class menu_login extends AppCompatActivity  implements Validator.Validati
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-//                intent = new Intent(menu_login.this, menu_lupa_password.class);
-//                finish();
-//                startActivity(intent);
+                intent = new Intent(menu_login.this, menu_lupa_password.class);
+                finish();
+                startActivity(intent);
             }
         });
         // db = new SQLiteHandler(getApplicationContext());

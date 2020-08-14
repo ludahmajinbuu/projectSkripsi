@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -93,7 +94,7 @@ public class menu_profil extends AppCompatActivity {
 
         GET_profil();
         Glide.with(this)
-                .load("http://192.168.43.109/adopsi/potopro/" + tampung)
+                .load("http://192.168.1.71/adopsi/potopro/" + tampung)
                 .centerCrop()
                 .into(imgProPhto);
 
@@ -196,7 +197,7 @@ public class menu_profil extends AppCompatActivity {
 //        });
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.43.109/adopsi/")
+                .baseUrl("http://192.168.1.71/adopsi/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -242,7 +243,7 @@ public class menu_profil extends AppCompatActivity {
 //                            txt_opd.setText(""+data.get(i).getNamaOpd());
 //                            txt_username.setText(""+data.get(i).getUsername());
                             Glide.with(menu_profil.this)
-                                    .load("http://192.168.43.109/adopsi/gambar/"+data.get(i).getFoto())
+                                    .load("http://192.168.1.71/adopsi/gambar/"+data.get(i).getFoto())
                                     .listener(new RequestListener<Drawable>() {
                                         @Override
                                         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
@@ -280,5 +281,14 @@ public class menu_profil extends AppCompatActivity {
             }
         });
 
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+            startActivity(new Intent(menu_profil.this, menu_utama.class));
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

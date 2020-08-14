@@ -3,11 +3,13 @@ package com.example.adopsi_hewan;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.example.adopsi_hewan.adapter.adapter_tampil_toko;
@@ -164,6 +166,14 @@ public class menu_toko_hewan extends AppCompatActivity {
             alertDialog.show();
         }
         return connectStatus;
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+            startActivity(new Intent(menu_toko_hewan.this, menu_utama.class));
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 }

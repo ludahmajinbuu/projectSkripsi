@@ -25,14 +25,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".info1"></activity>
-        <activity android:name=".informasi" />
-        <activity android:name=".menu_toko_hewan" />
+        <activity android:name=".menu_toko_hewan"></activity>
         <activity android:name=".menu_pencarian" />
         <activity android:name=".edit_profil" />
         <activity android:name=".hewan_baru" />
         <activity android:name=".verifikasi_admin" />
+        <activity android:name=".informasi" />
         <activity android:name=".tambahHewa1" />
+        <activity android:name=".menu_lupa_password" />
         <activity android:name=".form_ajukanAdopsi" />
         <activity android:name=".detail_hewan" />
         <activity android:name=".menu_profil" />

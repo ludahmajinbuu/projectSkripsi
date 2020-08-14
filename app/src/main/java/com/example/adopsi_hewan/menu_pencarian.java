@@ -1,8 +1,10 @@
 package com.example.adopsi_hewan;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -63,6 +65,14 @@ public class menu_pencarian extends AppCompatActivity {
                 return false;
             }
         });
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+            startActivity(new Intent(menu_pencarian.this, menu_utama.class));
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     public void cari() {

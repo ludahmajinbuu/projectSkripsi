@@ -3,6 +3,8 @@ package com.example.adopsi_hewan.server;
 
 import com.example.adopsi_hewan.model.BaseResponse;
 import com.example.adopsi_hewan.model.DataModel_register;
+import com.example.adopsi_hewan.model.ResponsModel;
+import com.example.adopsi_hewan.model.berita.Response_berita;
 import com.example.adopsi_hewan.model.model_tampil_hewan.Response_hewan;
 import com.example.adopsi_hewan.model.profil.Response_profil;
 import com.example.adopsi_hewan.model.toko.Response_toko;
@@ -31,6 +33,9 @@ public interface ApiRequest {
     @GET("get_data_hewan_verifikasi_admin.php")
     Call<Response_hewan> get_data_hewan_verifikasi_admin();
 
+    @GET("berita.php")
+    Call<Response_berita> get_berita();
+
     @GET("toko.php")
     Call<Response_toko> toko(@Query("lat") String lat,
                              @Query("lng") String lng);
@@ -40,6 +45,13 @@ public interface ApiRequest {
     @POST("cari_hewan.php")
     Call<Response_hewan> cari_hewan(
             @Field("search") String search);
+
+    @FormUrlEncoded
+    @POST("update_pass.php")
+    Call<ResponsModel> lupa_password(
+            @Field("nik") String nik,
+            @Field("password") String password,
+            @Field("tgl_lahir") String tgl_lahir);
 
     @GET("profil.php")
     Call<Response_profil> profil(@Query("nik") String nik);

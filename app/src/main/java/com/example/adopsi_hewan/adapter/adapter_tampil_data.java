@@ -53,10 +53,10 @@ public class adapter_tampil_data extends RecyclerView.Adapter<adapter_tampil_dat
 
 
         Toast.makeText(ctx, "kirim"+ kriim, Toast.LENGTH_SHORT).show();
-        holder.nama.setText(dm.getNama());
-        holder.umur.setText(dm.getUmur());
-        holder.kelamin.setText(dm.getJk());
-        holder.jenis.setText(dm.getJenis());
+        holder.nama.setText("NAMA : "+dm.getNama());
+        holder.umur.setText("UMUR : "+dm.getUmur());
+        holder.kelamin.setText("Jenis Kelamin : "+dm.getJk());
+        holder.jenis.setText("Jenis : "+dm.getJenis());
         holder.status.setText(dm.getStatus());
 
 
@@ -64,7 +64,7 @@ public class adapter_tampil_data extends RecyclerView.Adapter<adapter_tampil_dat
 
 
         Glide.with(ctx)
-                .load("http://192.168.43.109/adopsi/gambar/"+dm.getFotoHewan())
+                .load("http://192.168.1.71/adopsi/gambar/"+dm.getFotoHewan())
                 .apply(new RequestOptions()
                         .fitCenter()
                         .error(R.drawable.ic_map_black_48dp))
