@@ -1,5 +1,24 @@
 package com.example.adopsi_hewan;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.example.adopsi_hewan.adapter.adapter_tampil_toko;
+import com.example.adopsi_hewan.model.toko.Response_toko;
+import com.example.adopsi_hewan.model.toko.ResultItem_toko;
+import com.example.adopsi_hewan.server.ApiRequest;
+import com.example.adopsi_hewan.server.Retroserver;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,29 +28,6 @@ import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
-
-import com.example.adopsi_hewan.adapter.adapter_tampil_data;
-import com.example.adopsi_hewan.adapter.adapter_tampil_toko;
-import com.example.adopsi_hewan.model.model_tampil_hewan.Response_hewan;
-import com.example.adopsi_hewan.model.model_tampil_hewan.ResultItem_hewn;
-import com.example.adopsi_hewan.model.toko.Response_toko;
-import com.example.adopsi_hewan.model.toko.ResultItem_toko;
-import com.example.adopsi_hewan.server.ApiRequest;
-import com.example.adopsi_hewan.server.Retroserver;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class menu_toko_hewan extends AppCompatActivity {
     private List<ResultItem_toko> data = new ArrayList<>();
@@ -97,7 +93,7 @@ public class menu_toko_hewan extends AppCompatActivity {
                     Log.i("idade", "onResponse: "+data);
 
                     if (data.size()==0){
-
+                        Toast.makeText(menu_toko_hewan.this, "Data tidak Ada", Toast.LENGTH_SHORT).show();
                     }
                     else {
 

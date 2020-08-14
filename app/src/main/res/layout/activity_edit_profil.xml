@@ -99,7 +99,6 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/txtttlEdt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -116,7 +115,6 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/txttgllhrEdt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -225,7 +223,7 @@
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:text="Ubah" />
 
         </LinearLayout>
 

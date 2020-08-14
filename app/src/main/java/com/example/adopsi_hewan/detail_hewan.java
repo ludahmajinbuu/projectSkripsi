@@ -1,15 +1,6 @@
 package com.example.adopsi_hewan;
 
-import androidx.appcompat.app.AppCompatActivity;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,10 +11,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.adopsi_hewan.model.BaseResponse;
 import com.example.adopsi_hewan.server.ApiRequest;
 import com.example.adopsi_hewan.server.Retroserver;
+
+import androidx.appcompat.app.AppCompatActivity;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class detail_hewan extends AppCompatActivity {
@@ -106,7 +104,7 @@ public class detail_hewan extends AppCompatActivity {
         nik = sharedpreferences.getString(TAG_nis, null);
         status_user = sharedpreferences.getString(TAG_STATUS, null);
         Glide.with(this)
-                .load("http://192.168.43.14/adopsi/gambar/" + tampung)
+                .load("http://192.168.43.109/adopsi/gambar/" + tampung)
                 .centerCrop()
                 .into(imgHewandetail);
 

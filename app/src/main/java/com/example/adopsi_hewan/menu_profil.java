@@ -1,24 +1,11 @@
 package com.example.adopsi_hewan;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import cn.pedant.SweetAlert.SweetAlertDialog;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +21,18 @@ import com.example.adopsi_hewan.server.ApiRequest;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import cn.pedant.SweetAlert.SweetAlertDialog;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class menu_profil extends AppCompatActivity {
 
@@ -94,7 +93,7 @@ public class menu_profil extends AppCompatActivity {
 
         GET_profil();
         Glide.with(this)
-                .load("http://192.168.43.14/adopsi/potopro/" + tampung)
+                .load("http://192.168.43.109/adopsi/potopro/" + tampung)
                 .centerCrop()
                 .into(imgProPhto);
 
@@ -197,7 +196,7 @@ public class menu_profil extends AppCompatActivity {
 //        });
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.43.14/adopsi/")
+                .baseUrl("http://192.168.43.109/adopsi/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -243,22 +242,22 @@ public class menu_profil extends AppCompatActivity {
 //                            txt_opd.setText(""+data.get(i).getNamaOpd());
 //                            txt_username.setText(""+data.get(i).getUsername());
                             Glide.with(menu_profil.this)
-                                    .load("http://192.168.43.14/adopsi/gambar/"+data.get(i).getFoto())
+                                    .load("http://192.168.43.109/adopsi/gambar/"+data.get(i).getFoto())
                                     .listener(new RequestListener<Drawable>() {
                                         @Override
                                         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                                        //    progres_foto.setVisibility(View.GONE);
+                                            //    progres_foto.setVisibility(View.GONE);
                                             return false;
                                         }
 
                                         @Override
                                         public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                                          //  progres_foto.setVisibility(View.GONE);
+                                            //  progres_foto.setVisibility(View.GONE);
                                             return false;
                                         }
                                     })
                                     .circleCrop()
-                                    .error(R.drawable.error_circle)
+                                    .error(R.drawable.dog)
                                     .into(imgProPhto);
                         }
                     }

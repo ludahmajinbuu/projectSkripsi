@@ -14,8 +14,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.adopsi_hewan.R;
-import com.example.adopsi_hewan.detail_hewan;
-import com.example.adopsi_hewan.model.model_tampil_hewan.ResultItem_hewn;
 import com.example.adopsi_hewan.model.toko.ResultItem_toko;
 
 import java.util.List;
@@ -66,7 +64,7 @@ public class adapter_tampil_toko extends RecyclerView.Adapter<adapter_tampil_tok
 
 
         Glide.with(ctx)
-                .load("http://192.168.43.14/adopsi/gambar/"+dm.getGambar())
+                .load("http://192.168.43.109/adopsi/gambar/"+dm.getGambar())
                 .apply(new RequestOptions()
                         .fitCenter()
                         .error(R.drawable.ic_map_black_48dp))

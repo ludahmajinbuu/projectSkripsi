@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.adopsi_hewan.adapter.adapter_tampil_data;
 import com.example.adopsi_hewan.model.model_tampil_hewan.Response_hewan;
@@ -92,6 +93,7 @@ public class menu_pencarian extends AppCompatActivity {
                     Log.i("idade", "onResponse: "+data);
 
                     if (data.size()==0){
+                        Toast.makeText(menu_pencarian.this, "Data tidak Ada", Toast.LENGTH_SHORT).show();
 
                     }
                     else {

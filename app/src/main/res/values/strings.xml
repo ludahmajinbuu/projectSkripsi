@@ -3,4 +3,27 @@
 
     <string name="file_provider_authority" translatable="false">com.quiro.fileproviderexample.fileprovider</string>
 
+    <string name="info1">  Anak kucing lahir sebagai seorang penjelajah.  Dengan membebaskan dia untuk menjelajah lingkungannya, kamu dapat membantunya menciptakan rasa aman dan nyaman. Rasa keingintahuannya dapat menimbulkan masalah bagimu, maka dari itu akan lebih baik anda melakukan pemeriksaan di lingkungan rumah anda sehingga dapat menghindari dia dari berbagai kemungkinan yang berbahaya, seperti:
+
+1. Jendela yang terbuka
+2. Makanan sisa di dapur
+3. Panci dan teko yang sedang mendidih
+4. Pisau
+5. Tanaman beracun (Termasuk bunga lili, ivy, philodendron dan bunga poinsettias)
+6. Barang pecah belah
+7. Perapian dan cerobong asap
+8. Detergen dan bahan kimia
+9. Kantong Plastik
+10. Peralatan listrik dan kabel
+11. Mesin cuci dan pengering
+12. Toilet
+13. Anak – anak dan hewan peliharaan lainnya
+
+Walaupun kamu selalu mengamati dan berhati – hati akan tingkah laku anak kucingmu, sangat mungkin mereka untuk berada dalam kesulitan. Di alam liar, mereka akan bersembunyi untuk menjilati luka mereka dan pergi jauh dari pemangsa, jadi ingatlah hal ini jika kamu tidak dapat menemukan anak kucingmu dan berpikir bahwa ia terluka.
+Apabila terjadi kecelakaan, bantulah ia menenangkan dirinya dengan perkataanmu dan belailah dia, dan segeralah bawa ke dokter hewan terdekat. Ingat untuk selalu menyimpan nomor dokter hewanmu sehingga kamu dapat segera menghubungi mereka dalam keadaan darurat dengan cepat.
+Hal - hal tersebut merupakan beberapa tips cara menjaga kucing agar ia tetap dapat bermain di sekitar rumah dengan aman dan nyaman tanpa anda harus merasa takut akan membahayakan keselamatannya.
+
+</string>
+    <string name="info2">  </string>
+
 </resources>

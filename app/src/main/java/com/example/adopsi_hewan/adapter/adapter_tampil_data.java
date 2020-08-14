@@ -10,17 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.adopsi_hewan.R;
 import com.example.adopsi_hewan.detail_hewan;
 import com.example.adopsi_hewan.model.model_tampil_hewan.ResultItem_hewn;
 
-
 import java.util.List;
 
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -66,7 +64,7 @@ public class adapter_tampil_data extends RecyclerView.Adapter<adapter_tampil_dat
 
 
         Glide.with(ctx)
-                .load("http://192.168.43.14/adopsi/gambar/"+dm.getFotoHewan())
+                .load("http://192.168.43.109/adopsi/gambar/"+dm.getFotoHewan())
                 .apply(new RequestOptions()
                         .fitCenter()
                         .error(R.drawable.ic_map_black_48dp))

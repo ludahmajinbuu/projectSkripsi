@@ -1,12 +1,5 @@
  package com.example.adopsi_hewan;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,7 +9,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.mobsandgeeks.saripaar.Validator;
+import androidx.appcompat.app.AppCompatActivity;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
  public class menu_utama extends AppCompatActivity {
 
@@ -120,6 +116,14 @@ import com.mobsandgeeks.saripaar.Validator;
      @OnClick(R.id.btnprofil)
      public void pindah4() {
          Intent intent = new Intent(menu_utama.this, menu_profil.class);
+
+         startActivity(intent);
+
+     }
+
+     @OnClick(R.id.Layer_info)
+     public void pindah_info() {
+         Intent intent = new Intent(menu_utama.this, informasi.class);
 
          startActivity(intent);
 

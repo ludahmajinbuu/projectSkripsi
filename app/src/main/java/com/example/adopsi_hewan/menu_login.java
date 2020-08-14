@@ -1,10 +1,5 @@
 package com.example.adopsi_hewan;
 
-import androidx.appcompat.app.AppCompatActivity;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -15,7 +10,6 @@ import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,14 +20,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
-import com.example.adopsi_hewan.R;
 import com.example.adopsi_hewan.app.AppConfig;
 import com.example.adopsi_hewan.app.AppController;
-import com.example.adopsi_hewan.menu_utama;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
-import com.mobsandgeeks.saripaar.annotation.Length;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
 import org.json.JSONException;
@@ -42,6 +32,11 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import androidx.appcompat.app.AppCompatActivity;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class menu_login extends AppCompatActivity  implements Validator.ValidationListener {
 
@@ -181,6 +176,8 @@ public class menu_login extends AppCompatActivity  implements Validator.Validati
         startActivity(intent);
 
     }
+
+
 
     private void checkLogin(final String nis, final String password) {
         pDialog = new ProgressDialog(this);
