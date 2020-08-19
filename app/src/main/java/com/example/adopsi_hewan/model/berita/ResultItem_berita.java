@@ -2,7 +2,7 @@ package com.example.adopsi_hewan.model.berita;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ResultItem{
+public class ResultItem_berita {
 
 	@SerializedName("foto_info")
 	private String fotoInfo;

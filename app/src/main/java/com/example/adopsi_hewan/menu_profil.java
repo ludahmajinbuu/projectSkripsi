@@ -94,7 +94,7 @@ public class menu_profil extends AppCompatActivity {
 
         GET_profil();
         Glide.with(this)
-                .load("http://192.168.1.71/adopsi/potopro/" + tampung)
+                .load("http://192.168.43.14/adopsi/potopro/" + tampung)
                 .centerCrop()
                 .into(imgProPhto);
 
@@ -197,7 +197,7 @@ public class menu_profil extends AppCompatActivity {
 //        });
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.71/adopsi/")
+                .baseUrl("http://192.168.43.14/adopsi/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -243,7 +243,7 @@ public class menu_profil extends AppCompatActivity {
 //                            txt_opd.setText(""+data.get(i).getNamaOpd());
 //                            txt_username.setText(""+data.get(i).getUsername());
                             Glide.with(menu_profil.this)
-                                    .load("http://192.168.1.71/adopsi/gambar/"+data.get(i).getFoto())
+                                    .load("http://192.168.43.14/adopsi/gambar/"+data.get(i).getFoto())
                                     .listener(new RequestListener<Drawable>() {
                                         @Override
                                         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {

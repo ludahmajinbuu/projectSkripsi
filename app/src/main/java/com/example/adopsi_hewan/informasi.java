@@ -21,7 +21,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.adopsi_hewan.adapter.adapter_tampil_berita;
 import com.example.adopsi_hewan.model.berita.Response_berita;
-import com.example.adopsi_hewan.model.berita.ResultItem;
+import com.example.adopsi_hewan.model.berita.ResultItem_berita;
 import com.example.adopsi_hewan.server.ApiRequest;
 import com.example.adopsi_hewan.server.Retroserver;
 
@@ -41,7 +41,7 @@ public class informasi extends AppCompatActivity {
     @BindView(R.id.swifeRefresh)
     SwipeRefreshLayout swifeRefresh;
 
-    private List<ResultItem> data = new ArrayList<>();
+    private List<ResultItem_berita> data = new ArrayList<>();
     adapter_tampil_berita adapter;
 
     private RecyclerView mRecycler;
