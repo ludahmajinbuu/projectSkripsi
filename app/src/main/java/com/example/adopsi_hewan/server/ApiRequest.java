@@ -6,6 +6,7 @@ import com.example.adopsi_hewan.model.DataModel_register;
 import com.example.adopsi_hewan.model.ResponsModel;
 import com.example.adopsi_hewan.model.berita.Response_berita;
 import com.example.adopsi_hewan.model.model_tampil_hewan.Response_hewan;
+import com.example.adopsi_hewan.model.model_tampil_hewan.Response_hewan_new;
 import com.example.adopsi_hewan.model.profil.Response_profil;
 import com.example.adopsi_hewan.model.toko.Response_toko;
 
@@ -25,13 +26,13 @@ public interface ApiRequest {
                                               @Query("password") String password); // view berdasarkan ID
 
     @GET("data_materi.php")
-    Call<Response_hewan> Get_data_hewan();
+    Call<Response_hewan_new> Get_data_hewan();
 
     @GET("get_data_hewan_suskes_adopsi.php")
-    Call<Response_hewan> get_data_hewan_suskes_adopsi();
+    Call<Response_hewan_new> get_data_hewan_suskes_adopsi();
 
     @GET("get_data_hewan_verifikasi_admin.php")
-    Call<Response_hewan> get_data_hewan_verifikasi_admin();
+    Call<Response_hewan_new> get_data_hewan_verifikasi_admin();
 
     @GET("berita.php")
     Call<Response_berita> get_berita();
@@ -43,7 +44,7 @@ public interface ApiRequest {
 
     @FormUrlEncoded
     @POST("cari_hewan.php")
-    Call<Response_hewan> cari_hewan(
+    Call<Response_hewan_new> cari_hewan(
             @Field("search") String search);
 
     @FormUrlEncoded
@@ -58,7 +59,7 @@ public interface ApiRequest {
 
 
     @GET("get_data_hewan_verifikasi_pemilik_hewan.php")
-    Call<Response_hewan> get_data_hewan_verifikasi_pemilik_hewan();
+    Call<Response_hewan_new> get_data_hewan_verifikasi_pemilik_hewan(@Query("nik") String nik);
 
     @FormUrlEncoded
     @POST("updatehewan.php")
@@ -67,6 +68,31 @@ public interface ApiRequest {
             @Field("idHewan") String idHewan,
             @Field("idUser") String idUser,
             @Field("status") String status);
+
+
+
+    @FormUrlEncoded
+    @POST("setuju.php")
+    Call<BaseResponse> setuju(
+            @Field("idHewan") String idHewan);
+
+    @FormUrlEncoded
+    @POST("alasan.php")
+    Call<BaseResponse> alasan(
+            @Field("id_pemohon") String id_pemohon,
+            @Field("id_hewan") String id_hewan,
+            @Field("alasan") String alasan);
+
+
+    @FormUrlEncoded
+    @POST("tidak_setuju.php")
+    Call<BaseResponse> tidak_setuju(
+            @Field("idHewan") String idHewan,
+            @Field("idAdopsi") String idAdopsi,
+            @Field("id_alasan") String id_alasan);
+
+
+    ;
 
     @GET("data_materi_admin.php")
     Call<Response_hewan> Get_data_hewan_admin(

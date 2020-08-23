@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 public class Response_berita {
 
 	@SerializedName("result")
-	private List<ResultItem> result;
+	private List<ResultItem_berita> result;
 
 	@SerializedName("status")
 	private boolean status;
@@ -14,11 +14,11 @@ public class Response_berita {
 	@SerializedName("desc")
 	private String desc;
 
-	public void setResult(List<ResultItem> result){
+	public void setResult(List<ResultItem_berita> result){
 		this.result = result;
 	}
 
-	public List<ResultItem> getResult(){
+	public List<ResultItem_berita> getResult(){
 		return result;
 	}
 

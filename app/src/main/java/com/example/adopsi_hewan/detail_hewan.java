@@ -1,11 +1,19 @@
 package com.example.adopsi_hewan;
 
+import android.Manifest;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +24,7 @@ import com.example.adopsi_hewan.server.ApiRequest;
 import com.example.adopsi_hewan.server.Retroserver;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -30,13 +39,13 @@ public class detail_hewan extends AppCompatActivity {
     public static final String session_status = "session_status";
 
     Boolean session = false;
-
+    EditText alasan;
     public final static String TAG_nis = "nik_ambil";
     public final static String TAG_STATUS = "status";
     public final static String TAG_NAMA = "nama";
     public static final String my_shared_preferences = "my_shared_preferences";
-    String status,nik,nama;
-
+    String status, nik, nama;
+    Dialog dialog;
     SharedPreferences sharedpreferences;
 
     @BindView(R.id.txtnmaDtlHwan)
@@ -69,12 +78,16 @@ public class detail_hewan extends AppCompatActivity {
     @BindView(R.id.btn_adop)
     Button btn_adop;
 
-    @BindView(R.id.btn_order)
-    Button btn_order;
+    @BindView(R.id.btn_tidak)
+    Button btn_tidak;
 
-    String id,status_kirim;
+    String id, status_kirim, id_alasan, id_adopsi;
 
-    String tampung,status_hewan,status_user;
+    String tampung, status_hewan, status_user;
+    @BindView(R.id.txt_alasan)
+    TextView txtAlasan;
+    @BindView(R.id.btn_panggil)
+    Button btnPanggil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,10 +107,15 @@ public class detail_hewan extends AppCompatActivity {
         txtStrlHwanDtl.setText(extras.getString("steril"));
         txtVksinHwanDtl.setText(extras.getString("vaksin"));
         txtKtrHwanDtl.setText(extras.getString("keterangan"));
-        status_hewan=extras.getString("status");
+        status_hewan = extras.getString("status");
+        id_alasan = extras.getString("id_alasan");
+        id_adopsi = extras.getString("id_adopsi");
+        txtAlasan.setText("Alasan Adopsi " + extras.getString("alasan"));
+
 
         tampung = extras.getString("foto");
         id = extras.getString("id");
+        Log.i("isi_id", "onCreate: " + id + " " + id_alasan + " " + id_adopsi);
         sharedpreferences = getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
         session = sharedpreferences.getBoolean(session_status, false);
 
@@ -108,56 +126,181 @@ public class detail_hewan extends AppCompatActivity {
                 .centerCrop()
                 .into(imgHewandetail);
 
-        if (status_hewan.equals("2")){
+        if (status_hewan.equals("2")) {
             btn_adop.setText("SETUJUI");
-        }else if (status_hewan.equals("1")){
+            btnPanggil.setVisibility(View.GONE);
+        } else if (status_hewan.equals("1")) {
+            txtAlasan.setVisibility(View.GONE);
+            btnPanggil.setVisibility(View.GONE);
+            btn_tidak.setVisibility(View.GONE);
             btn_adop.setText("ADOPSI");
-        }else if (status_hewan.equals("0")){
+        } else if (status_hewan.equals("0")) {
+            btnPanggil.setVisibility(View.GONE);
+            txtAlasan.setVisibility(View.GONE);
+            btn_tidak.setVisibility(View.GONE);
             btn_adop.setText("SETUJUI");
-        }else {
+        } else {
+            txtAlasan.setVisibility(View.GONE);
+            btn_tidak.setVisibility(View.GONE);
             btn_adop.setVisibility(View.GONE);
         }
 
     }
 
-    @OnClick(R.id.btn_adop)
-    public void order() {
-        updatepass();
-      //  Toast.makeText(this, "permohonan adopsi berhasil dikirim", Toast.LENGTH_SHORT).show();
+    @OnClick(R.id.btn_tidak)
+    public void btn_tidak() {
+
+        tidak_Setuju();
+
 
     }
 
-    void updatepass() {
+    @OnClick(R.id.btn_adop)
+    public void order() {
+        if (status_hewan.equals("1")) {
+            dialog = new Dialog(this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.dialog_tambah_materi);
+            dialog.setCancelable(false);
+
+            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+            lp.copyFrom(dialog.getWindow().getAttributes());
+            dialog.getWindow().setAttributes(lp);
+            dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+            dialog.getWindow().setDimAmount(0.5f);
 
 
-        ApiRequest api2 = Retroserver.getClient().create(ApiRequest.class);
-        Call<BaseResponse> update2 = null;
+            lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+            lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
 
-        if (status_user.equals("admin")){
-            update2=api2.Update_hewan(
-                    id,
-                    id,
-                    nik,
-                    "1");
-        }else {
-            update2=api2.Update_hewan(
-                    id,
-                    id,
-                    nik,
-                    "2");
+
+            ImageView close = (ImageView) dialog.findViewById(R.id.btn_close);
+            TextView judul = (TextView) dialog.findViewById(R.id.txt_judul);
+            alasan = (EditText) dialog.findViewById(R.id.edit_alasan);
+
+            judul.setText("Tambah Materi");
+
+            Button dialogButton = (Button) dialog.findViewById(R.id.btn_simpan);
+
+            dialogButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Dismiss the popup window
+                    alasan();
+                }
+            });
+
+
+            close.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Dismiss the popup window
+                    dialog.dismiss();
+                }
+            });
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.show();
+        } else {
+            setuju();
         }
 
 
+        //
+        //  Toast.makeText(this, "permohonan adopsi berhasil dikirim", Toast.LENGTH_SHORT).show();
 
+    }
+
+    void alasan() {
+        ApiRequest api2 = Retroserver.getClient().create(ApiRequest.class);
+        Call<BaseResponse> update2 = api2.alasan(
+                nik,
+                id,
+                alasan.getText().toString());
 
 
         update2.enqueue(new Callback<BaseResponse>() {
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                 Log.d("Retro", "Response_tes");
-                Toast.makeText(detail_hewan.this, "kode"+response.body().getKode(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(detail_hewan.this, "kode"+response.body().getKode(), Toast.LENGTH_SHORT).show();
                 if (response.body().getKode().equals("0")) {
-                    Toast.makeText(detail_hewan.this, "permohonan adopsi terkirim", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(detail_hewan.this, "permohonan adopsi terkirim", Toast.LENGTH_SHORT).show();
+                    updatepass();
+
+                }
+                if (response.body().getKode().equals("1")) {
+
+                    // Toast.makeText(menu_profil.this, response.body().getPesan(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(detail_hewan.this, "gagal kirim permohonan", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
+                // Pd.hide();
+                Log.d("Retro", "OnFailure");
+                Toast.makeText(detail_hewan.this, "gagal update", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    void tidak_Setuju() {
+        ApiRequest api2 = Retroserver.getClient().create(ApiRequest.class);
+        Call<BaseResponse> update2 = api2.tidak_setuju(
+                id,
+                id_adopsi,
+                id_alasan);
+
+
+        update2.enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                Log.d("Retro", "Response_tes");
+                //Toast.makeText(detail_hewan.this, "kode"+response.body().getKode(), Toast.LENGTH_SHORT).show();
+                if (response.body().getKode().equals("0")) {
+                    Toast.makeText(detail_hewan.this, "Berhasil", Toast.LENGTH_SHORT).show();
+                    btn_adop.setVisibility(View.GONE);
+                    btn_tidak.setVisibility(View.GONE);
+                    // updatepass();
+
+                }
+                if (response.body().getKode().equals("1")) {
+
+                    // Toast.makeText(menu_profil.this, response.body().getPesan(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(detail_hewan.this, "gagal kirim permohonan", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
+                // Pd.hide();
+                Log.d("Retro", "OnFailure");
+                Toast.makeText(detail_hewan.this, "gagal update", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    void setuju() {
+
+
+        ApiRequest api2 = Retroserver.getClient().create(ApiRequest.class);
+        Call<BaseResponse> update2 = api2.setuju(id);
+
+
+        update2.enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                Log.d("Retro", "Response_tes");
+                //Toast.makeText(detail_hewan.this, "kode"+response.body().getKode(), Toast.LENGTH_SHORT).show();
+                if (response.body().getKode().equals("0")) {
+                    btn_adop.setVisibility(View.GONE);
+
+//                    Intent intent = new Intent(detail_hewan.this, hewan_baru.class);
+//
+//                    startActivity(intent);
+                    Toast.makeText(detail_hewan.this, "permohonan adopsi terkirim", Toast.LENGTH_LONG).show();
 
 
                 }
@@ -173,11 +316,66 @@ public class detail_hewan extends AppCompatActivity {
             public void onFailure(Call<BaseResponse> call, Throwable t) {
                 // Pd.hide();
                 Log.d("Retro", "OnFailure");
-                Toast.makeText(detail_hewan.this,"gagal update", Toast.LENGTH_SHORT).show();
+                Toast.makeText(detail_hewan.this, "gagal update", Toast.LENGTH_SHORT).show();
             }
         });
     }
-    public  void  onResume() {
+
+    void updatepass() {
+
+
+        ApiRequest api2 = Retroserver.getClient().create(ApiRequest.class);
+        Call<BaseResponse> update2 = null;
+
+        if (status_user.equals("admin")) {
+            update2 = api2.Update_hewan(
+                    id,
+                    id,
+                    nik,
+                    "1");
+        } else {
+            update2 = api2.Update_hewan(
+                    id,
+                    id,
+                    nik,
+                    "2");
+        }
+
+
+        update2.enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                Log.d("Retro", "Response_tes");
+                //Toast.makeText(detail_hewan.this, "kode"+response.body().getKode(), Toast.LENGTH_SHORT).show();
+                if (response.body().getKode().equals("0")) {
+                    dialog.dismiss();
+                    btn_adop.setVisibility(View.GONE);
+
+//                    Intent intent = new Intent(detail_hewan.this, hewan_baru.class);
+//
+//                    startActivity(intent);
+                    Toast.makeText(detail_hewan.this, "permohonan adopsi terkirim", Toast.LENGTH_LONG).show();
+
+
+                }
+                if (response.body().getKode().equals("1")) {
+
+                    // Toast.makeText(menu_profil.this, response.body().getPesan(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(detail_hewan.this, "gagal kirim permohonan", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
+                // Pd.hide();
+                Log.d("Retro", "OnFailure");
+                Toast.makeText(detail_hewan.this, "gagal update", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void onResume() {
 
 
         super.onResume();
@@ -188,13 +386,20 @@ public class detail_hewan extends AppCompatActivity {
         nik = sharedpreferences.getString(TAG_nis, null);
         nama = sharedpreferences.getString(TAG_NAMA, null);
 
- if (status.equals("admin")){
+        if (status.equals("admin")) {
 
-    btn_order.setVisibility(View.GONE);
+            btn_tidak.setVisibility(View.GONE);
 
-    status_kirim="1";
-}
+            status_kirim = "1";
+        }
 
         ButterKnife.bind(this);
+    }
+
+    @OnClick(R.id.btn_panggil)
+    public void onViewClicked() {
+        String phone = "+34666777888";
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+        startActivity(intent);
     }
 }

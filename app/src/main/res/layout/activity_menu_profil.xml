@@ -239,7 +239,8 @@
                 android:clickable="true"
                 android:paddingLeft="20dp"
                 android:text="Ganti Password"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <TextView
                 android:layout_width="match_parent"

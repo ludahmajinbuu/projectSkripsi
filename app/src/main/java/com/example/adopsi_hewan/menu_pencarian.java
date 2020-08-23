@@ -9,8 +9,8 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.adopsi_hewan.adapter.adapter_tampil_data;
-import com.example.adopsi_hewan.model.model_tampil_hewan.Response_hewan;
-import com.example.adopsi_hewan.model.model_tampil_hewan.ResultItem_hewn;
+import com.example.adopsi_hewan.model.model_tampil_hewan.Response_hewan_new;
+import com.example.adopsi_hewan.model.model_tampil_hewan.ResultItem_hewan_new;
 import com.example.adopsi_hewan.server.ApiRequest;
 import com.example.adopsi_hewan.server.Retroserver;
 
@@ -33,7 +33,7 @@ public class menu_pencarian extends AppCompatActivity {
     ProgressDialog pd;
     @BindView(R.id.rv)
     RecyclerView rv;
-    private List<ResultItem_hewn> data = new ArrayList<>();
+    private List<ResultItem_hewan_new> data = new ArrayList<>();
     adapter_tampil_data adapter;
 
     private RecyclerView.LayoutManager mManager, manager;
@@ -84,13 +84,13 @@ public class menu_pencarian extends AppCompatActivity {
 
 
 
-        Call<Response_hewan> call =  api.cari_hewan(String.valueOf(cariData.getQuery()));
+        Call<Response_hewan_new> call =  api.cari_hewan(String.valueOf(cariData.getQuery()));
 
 
 
-        call.enqueue(new Callback<Response_hewan>() {
+        call.enqueue(new Callback<Response_hewan_new>() {
             @Override
-            public void onResponse(Call<Response_hewan> call, Response<Response_hewan> response) {
+            public void onResponse(Call<Response_hewan_new> call, Response<Response_hewan_new> response) {
 
                 try {
                     pd.hide();
@@ -116,7 +116,7 @@ public class menu_pencarian extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Response_hewan> call, Throwable t) {
+            public void onFailure(Call<Response_hewan_new> call, Throwable t) {
                 t.printStackTrace();
 
 

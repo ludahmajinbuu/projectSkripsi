@@ -14,19 +14,17 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.Toast;
 
 import com.example.adopsi_hewan.adapter.adapter_tampil_data;
-import com.example.adopsi_hewan.model.model_tampil_hewan.Response_hewan;
-import com.example.adopsi_hewan.model.model_tampil_hewan.ResultItem_hewn;
+import com.example.adopsi_hewan.model.model_tampil_hewan.Response_hewan_new;
+import com.example.adopsi_hewan.model.model_tampil_hewan.ResultItem_hewan_new;
 import com.example.adopsi_hewan.server.ApiRequest;
 import com.example.adopsi_hewan.server.Retroserver;
 
@@ -35,7 +33,7 @@ import java.util.List;
 
 public class verifikasi_admin extends AppCompatActivity {
 
-    private List<ResultItem_hewn> data = new ArrayList<>();
+    private List<ResultItem_hewan_new> data = new ArrayList<>();
     adapter_tampil_data adapter;
 
 
@@ -87,12 +85,12 @@ public class verifikasi_admin extends AppCompatActivity {
 
         ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
         // Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
-        Call<Response_hewan> call = api.Get_data_hewan();
+        Call<Response_hewan_new> call = api.Get_data_hewan();
 
 
-        call.enqueue(new Callback<Response_hewan>() {
+        call.enqueue(new Callback<Response_hewan_new>() {
             @Override
-            public void onResponse(Call<Response_hewan> call, Response<Response_hewan> response) {
+            public void onResponse(Call<Response_hewan_new> call, Response<Response_hewan_new> response) {
 
                 try {
                     Pd.hide();
@@ -117,7 +115,7 @@ public class verifikasi_admin extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Response_hewan> call, Throwable t) {
+            public void onFailure(Call<Response_hewan_new> call, Throwable t) {
                 t.printStackTrace();
 
             }

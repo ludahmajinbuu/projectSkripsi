@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.adopsi_hewan.R;
 import com.example.adopsi_hewan.detail_hewan;
-import com.example.adopsi_hewan.model.model_tampil_hewan.ResultItem_hewn;
+import com.example.adopsi_hewan.model.model_tampil_hewan.ResultItem_hewan_new;
 
 import java.util.List;
 
@@ -26,13 +26,13 @@ public class adapter_tampil_data extends RecyclerView.Adapter<adapter_tampil_dat
     private static CountDownTimer countDownTimer;
     String kriim;
 
-    public adapter_tampil_data(Context ctx, List<ResultItem_hewn> mList, String kriim) {
+    public adapter_tampil_data(Context ctx, List<ResultItem_hewan_new> mList, String kriim) {
         this.kriim = kriim;
         this.mList = mList;
         this.ctx = ctx;
     }
 
-    private List<ResultItem_hewn> mList ;
+    private List<ResultItem_hewan_new> mList ;
     private Context ctx;
 
     String status_laporan,status_baru;
@@ -48,7 +48,7 @@ public class adapter_tampil_data extends RecyclerView.Adapter<adapter_tampil_dat
     @Override
     public void onBindViewHolder(final HolderData holder, int position) {
         //  Toast.makeText(ctx, waktu, Toast.LENGTH_SHORT).show();
-        final ResultItem_hewn dm = mList.get(position);
+        final ResultItem_hewan_new dm = mList.get(position);
         String waktu;
 
 
@@ -97,7 +97,7 @@ public class adapter_tampil_data extends RecyclerView.Adapter<adapter_tampil_dat
 
         @BindView(R.id.imgHewan) ImageView gambar;
 
-        ResultItem_hewn dm;
+        ResultItem_hewan_new dm;
 
 
 
@@ -106,29 +106,10 @@ public class adapter_tampil_data extends RecyclerView.Adapter<adapter_tampil_dat
         {
             super(v);
             ButterKnife.bind(this, itemView);
-            nama.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (kriim.equals("admni")){
-                            //Toast.makeText(ctx, "ID"+dm.get(), Toast.LENGTH_SHORT).show();
-                            click_desc_data_Saya();
-                        }else   {
-                            //Toast.makeText(ctx, "ID"+dm.getIdRegis(), Toast.LENGTH_SHORT).show();
-                            click_desc_data();
-                        }
-
-                    }
-            });
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (kriim.equals("admin")){
-                      //  Toast.makeText(ctx, "ID"+dm.getIdRegis(), Toast.LENGTH_SHORT).show();
-                        click_desc_data_Saya();
-                    }else   {
-                       Toast.makeText(ctx, "ID"+dm.getStatus(), Toast.LENGTH_SHORT).show();
-                       // click_desc_data();
-                    }
+                    click_desc_data();
 
                 }
             });
@@ -150,6 +131,10 @@ public class adapter_tampil_data extends RecyclerView.Adapter<adapter_tampil_dat
             goInput.putExtra("status", dm.getStatus());
             goInput.putExtra("nik", dm.getNik());
             goInput.putExtra("status", dm.getStatus());
+            goInput.putExtra("id_alasan", dm.getIdAlasan());
+            goInput.putExtra("id_adopsi", dm.getIdAdopsi());
+            goInput.putExtra("alasan", dm.getAlasan());
+
 
                 ctx.startActivity(goInput);
         }

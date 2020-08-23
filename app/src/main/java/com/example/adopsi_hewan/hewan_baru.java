@@ -9,7 +9,6 @@ import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Field;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -25,8 +24,8 @@ import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.example.adopsi_hewan.adapter.adapter_tampil_data;
-import com.example.adopsi_hewan.model.model_tampil_hewan.Response_hewan;
-import com.example.adopsi_hewan.model.model_tampil_hewan.ResultItem_hewn;
+import com.example.adopsi_hewan.model.model_tampil_hewan.Response_hewan_new;
+import com.example.adopsi_hewan.model.model_tampil_hewan.ResultItem_hewan_new;
 import com.example.adopsi_hewan.server.ApiRequest;
 import com.example.adopsi_hewan.server.Retroserver;
 
@@ -35,7 +34,7 @@ import java.util.List;
 
 public class hewan_baru extends AppCompatActivity {
 
-    private List<ResultItem_hewn> data = new ArrayList<>();
+    private List<ResultItem_hewan_new> data = new ArrayList<>();
     adapter_tampil_data adapter;
 
     private RecyclerView mRecycler;
@@ -74,7 +73,13 @@ public class hewan_baru extends AppCompatActivity {
 
         Intent i=this.getIntent();
         staus_hewan=i.getExtras().getString("status");
+        Log.i("sts", "onCreate: "+staus_hewan);
         Toast.makeText(this, ""+staus_hewan, Toast.LENGTH_SHORT).show();
+        sharedpreferences = getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
+        session = sharedpreferences.getBoolean(session_status, false);
+        status = sharedpreferences.getString(TAG_STATUS, null);
+        nik = sharedpreferences.getString(TAG_nis, null);
+        nama = sharedpreferences.getString(TAG_NAMA, null);
 
 
 
@@ -98,12 +103,12 @@ public class hewan_baru extends AppCompatActivity {
 
 
 
-        Call<Response_hewan> call = null;
+        Call<Response_hewan_new> call = null;
 
         if (staus_hewan.equals("1")){
             call =  api.Get_data_hewan();
         }else if (staus_hewan.equals("2")){
-            call =  api.get_data_hewan_verifikasi_pemilik_hewan();
+            call =  api.get_data_hewan_verifikasi_pemilik_hewan(nik);
         }else if (staus_hewan.equals("3")){
             call =  api.get_data_hewan_suskes_adopsi();
         }else {
@@ -111,9 +116,9 @@ public class hewan_baru extends AppCompatActivity {
         }
 
 
-        call.enqueue(new Callback<Response_hewan>() {
+        call.enqueue(new Callback<Response_hewan_new>() {
             @Override
-            public void onResponse(Call<Response_hewan> call, Response<Response_hewan> response) {
+            public void onResponse(Call<Response_hewan_new> call, Response<Response_hewan_new> response) {
 
                 try {
                     Pd.hide();
@@ -138,7 +143,7 @@ public class hewan_baru extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Response_hewan> call, Throwable t) {
+            public void onFailure(Call<Response_hewan_new> call, Throwable t) {
                 t.printStackTrace();
 
 
@@ -217,6 +222,8 @@ public class hewan_baru extends AppCompatActivity {
         status = sharedpreferences.getString(TAG_STATUS, null);
         nik = sharedpreferences.getString(TAG_nis, null);
         nama = sharedpreferences.getString(TAG_NAMA, null);
+
+        Log.i("nik", "onResume: "+nik);
 
 
 

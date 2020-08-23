@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.adopsi_hewan.R;
 import com.example.adopsi_hewan.detail_hewan;
+import com.example.adopsi_hewan.menu_detail_informasi;
 import com.example.adopsi_hewan.model.berita.ResultItem_berita;
 import com.example.adopsi_hewan.model.model_tampil_hewan.ResultItem_hewn;
 
@@ -100,37 +101,21 @@ public class adapter_tampil_berita extends RecyclerView.Adapter<adapter_tampil_b
         {
             super(v);
             ButterKnife.bind(this, itemView);
-            nama.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (kriim.equals("admni")){
-                        //Toast.makeText(ctx, "ID"+dm.get(), Toast.LENGTH_SHORT).show();
-                        click_desc_data_Saya();
-                    }else   {
-                        //Toast.makeText(ctx, "ID"+dm.getIdRegis(), Toast.LENGTH_SHORT).show();
-                        click_desc_data();
-                    }
-
-                }
-            });
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (kriim.equals("admin")){
-                        //  Toast.makeText(ctx, "ID"+dm.getIdRegis(), Toast.LENGTH_SHORT).show();
-                       // click_desc_data_Saya();
-                    }else   {
-                       // Toast.makeText(ctx, "ID"+dm.getStatus(), Toast.LENGTH_SHORT).show();
-                        // click_desc_data();
-                    }
 
+                    click_desc_data();
                 }
             });
         }
 
         public void click_desc_data(){
-            Intent goInput = new Intent(ctx, detail_hewan.class);
-            goInput.putExtra("nama", dm.getJudul());
+            Intent goInput = new Intent(ctx, menu_detail_informasi.class);
+            goInput.putExtra("judul", dm.getJudul());
+            goInput.putExtra("tgl", dm.getTgl());
+            goInput.putExtra("isi", dm.getIsi());
+            goInput.putExtra("foto", dm.getFotoInfo());
 
 
             ctx.startActivity(goInput);
