@@ -45,9 +45,11 @@ public class menu_profil extends AppCompatActivity {
     public final static String TAG_STATUS = "status";
     public final static String TAG_NAMA = "nama";
     public static final String my_shared_preferences = "my_shared_preferences";
-    String status,nik,nama;
+    String status, nik, nama;
 
     SharedPreferences sharedpreferences;
+    @BindView(R.id.btn_edit)
+    TextView btnEdit;
 
     private List<ResultItem_profil> data = new ArrayList<ResultItem_profil>();
 
@@ -79,8 +81,7 @@ public class menu_profil extends AppCompatActivity {
     ImageView imgProPhto;
 
 
-
-    String id,status_kirim;
+    String id, status_kirim;
 
     String tampung;
 
@@ -100,7 +101,7 @@ public class menu_profil extends AppCompatActivity {
 
     }
 
-    public  void  onResume() {
+    public void onResume() {
 
 
         super.onResume();
@@ -156,46 +157,6 @@ public class menu_profil extends AppCompatActivity {
 
     public void GET_profil() {
 
-//        ApiRequest api = Retroserver.getClient().create(ApiRequest.class);
-//        // Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
-//
-//
-//
-//        Call<Response_profil> call =  api.profil("123");
-//
-//
-//
-//        call.enqueue(new Callback<Response_profil>() {
-//            @Override
-//            public void onResponse(Call<Response_profil> call, Response<Response_profil> response) {
-//
-//                try {
-//
-//
-//                    data = response.body().getResult();
-//
-//
-//
-//                    if (data.size()==0){
-//
-//                    }
-//                    else {
-//
-//                    }
-//                } catch (Exception e) {
-//                    Log.e("onResponse", "There is an error"+e);
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Response_profil> call, Throwable t) {
-//                t.printStackTrace();
-//
-//
-//            }
-//        });
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://192.168.43.14/adopsi/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -212,20 +173,13 @@ public class menu_profil extends AppCompatActivity {
                 try {
                     data = response.body().getResult();
 
-                    if (data.size()==0){
+                    if (data.size() == 0) {
 
-                    }else {
+                    } else {
 
-
-
-
-//                        txt_nama.setVisibility(View.VISIBLE);
-//                        txt_email.setVisibility(View.VISIBLE);
-//                        txt_opd.setVisibility(View.VISIBLE);
-//                        txt_username.setVisibility(View.VISIBLE);
 
                         for (int i = 0; i < data.size(); i++) {
-                            Toast.makeText(menu_profil.this, ""+data.get(i).getAlamat(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(menu_profil.this, "" + data.get(i).getAlamat(), Toast.LENGTH_SHORT).show();
                             txtAlaPro.setText(data.get(i).getAlamat());
                             txtEmaPro.setText(data.get(i).getEmail());
                             txtHPPro.setText(data.get(i).getNohp());
@@ -236,14 +190,8 @@ public class menu_profil extends AppCompatActivity {
                             txtKelPro.setText(data.get(i).getJk());
 
 
-
-//                            txt_nama.setText("" + data.get(i).getNama());
-//                            txt_email.setText(""+data.get(i).getEmail());
-//                            foto=data.get(i).getFoto();
-//                            txt_opd.setText(""+data.get(i).getNamaOpd());
-//                            txt_username.setText(""+data.get(i).getUsername());
                             Glide.with(menu_profil.this)
-                                    .load("http://192.168.43.14/adopsi/gambar/"+data.get(i).getFoto())
+                                    .load("http://192.168.43.14/adopsi/gambar/" + data.get(i).getFoto())
                                     .listener(new RequestListener<Drawable>() {
                                         @Override
                                         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
@@ -262,7 +210,6 @@ public class menu_profil extends AppCompatActivity {
                                     .into(imgProPhto);
                         }
                     }
-
 
 
                     //  txt_alamat.setText("Kecamatann "+kec+" Kelurahan "+kel+" "+" Alamat "+alamat+" Rt "+rt);
@@ -290,5 +237,9 @@ public class menu_profil extends AppCompatActivity {
             finish();
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @OnClick(R.id.btn_edit)
+    public void onViewClicked() {
     }
 }

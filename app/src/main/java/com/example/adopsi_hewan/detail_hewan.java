@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,10 +20,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.adopsi_hewan.model.BaseResponse;
+import com.example.adopsi_hewan.model.profil.Response_profil;
+import com.example.adopsi_hewan.model.profil.ResultItem_profil;
 import com.example.adopsi_hewan.server.ApiRequest;
 import com.example.adopsi_hewan.server.Retroserver;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import butterknife.BindView;
@@ -31,13 +42,15 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class detail_hewan extends AppCompatActivity {
 
 
     public static final String session_status = "session_status";
-
+    private List<ResultItem_profil> data = new ArrayList<ResultItem_profil>();
     Boolean session = false;
     EditText alasan;
     public final static String TAG_nis = "nik_ambil";
@@ -45,6 +58,7 @@ public class detail_hewan extends AppCompatActivity {
     public final static String TAG_NAMA = "nama";
     public static final String my_shared_preferences = "my_shared_preferences";
     String status, nik, nama;
+    String nik_pemilik_hewan;
     Dialog dialog;
     SharedPreferences sharedpreferences;
 
@@ -88,7 +102,7 @@ public class detail_hewan extends AppCompatActivity {
     TextView txtAlasan;
     @BindView(R.id.btn_panggil)
     Button btnPanggil;
-
+    String phone ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,6 +125,7 @@ public class detail_hewan extends AppCompatActivity {
         id_alasan = extras.getString("id_alasan");
         id_adopsi = extras.getString("id_adopsi");
         txtAlasan.setText("Alasan Adopsi " + extras.getString("alasan"));
+      nik_pemilik_hewan= extras.getString("nik");
 
 
         tampung = extras.getString("foto");
@@ -144,6 +159,7 @@ public class detail_hewan extends AppCompatActivity {
             btn_tidak.setVisibility(View.GONE);
             btn_adop.setVisibility(View.GONE);
         }
+        GET_profil();
 
     }
 
@@ -398,8 +414,52 @@ public class detail_hewan extends AppCompatActivity {
 
     @OnClick(R.id.btn_panggil)
     public void onViewClicked() {
-        String phone = "+34666777888";
+
         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
         startActivity(intent);
+    }
+
+    public void GET_profil() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.43.14/adopsi/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ApiRequest service = retrofit.create(ApiRequest.class);
+
+        Call<Response_profil> call = service.profil(nik_pemilik_hewan);
+
+        call.enqueue(new Callback<Response_profil>() {
+            @Override
+            public void onResponse(Call<Response_profil> call, Response<Response_profil> response) {
+
+                try {
+                    data = response.body().getResult();
+
+                    if (data.size()==0){
+
+                    }else {
+
+                        for (int i = 0; i < data.size(); i++) {
+
+                            phone=data.get(i).getAlamat();
+                        }
+                    }
+
+
+
+                } catch (Exception e) {
+                    Log.d("onResponse", "There is an error");
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Response_profil> call, Throwable t) {
+                t.printStackTrace();
+
+            }
+        });
+
     }
 }

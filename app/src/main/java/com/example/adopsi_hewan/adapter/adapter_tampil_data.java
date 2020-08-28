@@ -134,6 +134,7 @@ public class adapter_tampil_data extends RecyclerView.Adapter<adapter_tampil_dat
             goInput.putExtra("id_alasan", dm.getIdAlasan());
             goInput.putExtra("id_adopsi", dm.getIdAdopsi());
             goInput.putExtra("alasan", dm.getAlasan());
+            goInput.putExtra("nik", dm.getNik());
 
 
                 ctx.startActivity(goInput);
