@@ -64,7 +64,7 @@ public class adapter_tampil_toko extends RecyclerView.Adapter<adapter_tampil_tok
 
 
         Glide.with(ctx)
-                .load("http://192.168.43.14/adopsi/gambar/"+dm.getGambar())
+                .load("http://192.168.43.109/adopsi/gambar/"+dm.getGambar())
                 .apply(new RequestOptions()
                         .fitCenter()
                         .error(R.drawable.ic_map_black_48dp))

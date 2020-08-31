@@ -103,9 +103,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight="2"
                     android:paddingLeft="20dp"
                     android:text="No.HP"
                     android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/btn_edit_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:src="@drawable/ic_baseline_edit_24" />
             </LinearLayout>
 
             <LinearLayout
@@ -125,9 +134,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight="2"
                     android:paddingLeft="20dp"
                     android:text="Email"
                     android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/btn_eidt_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:src="@drawable/ic_baseline_edit_24" />
             </LinearLayout>
 
             <LinearLayout

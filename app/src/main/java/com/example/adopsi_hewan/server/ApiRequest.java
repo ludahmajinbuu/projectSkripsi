@@ -54,6 +54,23 @@ public interface ApiRequest {
             @Field("password") String password,
             @Field("tgl_lahir") String tgl_lahir);
 
+    @FormUrlEncoded
+    @POST("up_no.php")
+    Call<ResponsModel> up_no(
+            @Field("nik") String nik,
+            @Field("nohp") String nohp);
+
+    @FormUrlEncoded
+    @POST("edit_email.php")
+    Call<ResponsModel> edit_email(
+            @Field("nik") String nik,
+            @Field("nohp") String nohp);
+
+    @FormUrlEncoded
+    @POST("hapus_hewan.php")
+    Call<ResponsModel> hapus_hewan(
+            @Field("id") String id);
+
     @GET("profil.php")
     Call<Response_profil> profil(@Query("nik") String nik);
 

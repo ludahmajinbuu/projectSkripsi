@@ -235,7 +235,7 @@
 
                 <Button
                     android:id="@+id/btn_adop"
-                    android:layout_width="180dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="35dp"
@@ -253,6 +253,17 @@
                 android:backgroundTint="#607D8B"
                 android:text="PANGGIL"
                 android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/btn_hapus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#607D8B"
+                android:text="HAPUS"
+                android:textColor="#fff"
+                android:visibility="gone" />
 
         </LinearLayout>
 

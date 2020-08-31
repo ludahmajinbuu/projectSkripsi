@@ -21,7 +21,10 @@ public class menu_detail_informasi extends AppCompatActivity {
     ImageView bgImg;
     @BindView(R.id.txt_judul)
     TextView txtJudul;
-
+    public final static String TAG_nis = "nik_ambil";
+    public final static String TAG_STATUS = "status";
+    public final static String TAG_NAMA = "nama";
+    public static final String my_shared_preferences = "my_shared_preferences";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +41,7 @@ public class menu_detail_informasi extends AppCompatActivity {
 
 
         Glide.with(this)
-                .load("http://192.168.43.14/adopsi/gambar/" + extras.getString("foto"))
+                .load("http://192.168.43.109/adopsi/gambar/" + extras.getString("foto"))
                 .centerCrop()
                 .into(bgImg);
 

@@ -1,12 +1,9 @@
 package com.example.adopsi_hewan;
 
-import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,11 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.example.adopsi_hewan.model.BaseResponse;
+import com.example.adopsi_hewan.model.ResponsModel;
 import com.example.adopsi_hewan.model.profil.Response_profil;
 import com.example.adopsi_hewan.model.profil.ResultItem_profil;
 import com.example.adopsi_hewan.server.ApiRequest;
@@ -33,9 +27,7 @@ import com.example.adopsi_hewan.server.Retroserver;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -50,6 +42,8 @@ public class detail_hewan extends AppCompatActivity {
 
 
     public static final String session_status = "session_status";
+    @BindView(R.id.btn_hapus)
+    Button btnHapus;
     private List<ResultItem_profil> data = new ArrayList<ResultItem_profil>();
     Boolean session = false;
     EditText alasan;
@@ -102,7 +96,8 @@ public class detail_hewan extends AppCompatActivity {
     TextView txtAlasan;
     @BindView(R.id.btn_panggil)
     Button btnPanggil;
-    String phone ;
+    String phone;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,7 +120,7 @@ public class detail_hewan extends AppCompatActivity {
         id_alasan = extras.getString("id_alasan");
         id_adopsi = extras.getString("id_adopsi");
         txtAlasan.setText("Alasan Adopsi " + extras.getString("alasan"));
-      nik_pemilik_hewan= extras.getString("nik");
+        nik_pemilik_hewan = extras.getString("nik");
 
 
         tampung = extras.getString("foto");
@@ -137,7 +132,7 @@ public class detail_hewan extends AppCompatActivity {
         nik = sharedpreferences.getString(TAG_nis, null);
         status_user = sharedpreferences.getString(TAG_STATUS, null);
         Glide.with(this)
-                .load("http://192.168.43.14/adopsi/gambar/" + tampung)
+                .load("http://192.168.43.109/adopsi/gambar/" + tampung)
                 .centerCrop()
                 .into(imgHewandetail);
 
@@ -158,6 +153,14 @@ public class detail_hewan extends AppCompatActivity {
             txtAlasan.setVisibility(View.GONE);
             btn_tidak.setVisibility(View.GONE);
             btn_adop.setVisibility(View.GONE);
+        }
+        Log.i("data_nik", "onCreate: "+nik+" "+nik_pemilik_hewan);
+
+        if (nik.equals(nik_pemilik_hewan)){
+            btn_adop.setVisibility(View.GONE);
+            btnHapus.setVisibility(View.VISIBLE);
+        }else {
+            btn_adop.setVisibility(View.VISIBLE);
         }
         GET_profil();
 
@@ -413,7 +416,7 @@ public class detail_hewan extends AppCompatActivity {
     }
 
     @OnClick(R.id.btn_panggil)
-    public void onViewClicked() {
+    public void btn_panggil() {
 
         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
         startActivity(intent);
@@ -421,7 +424,7 @@ public class detail_hewan extends AppCompatActivity {
 
     public void GET_profil() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.43.14/adopsi/")
+                .baseUrl("http://192.168.43.109/adopsi/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -436,16 +439,15 @@ public class detail_hewan extends AppCompatActivity {
                 try {
                     data = response.body().getResult();
 
-                    if (data.size()==0){
+                    if (data.size() == 0) {
 
-                    }else {
+                    } else {
 
                         for (int i = 0; i < data.size(); i++) {
 
-                            phone=data.get(i).getAlamat();
+                            phone = data.get(i).getAlamat();
                         }
                     }
-
 
 
                 } catch (Exception e) {
@@ -461,5 +463,45 @@ public class detail_hewan extends AppCompatActivity {
             }
         });
 
+    }
+
+    @OnClick(R.id.btn_hapus)
+    public void onViewClicked() {
+        hapus();
+    }
+
+    void hapus(){
+        ApiRequest api2 = Retroserver.getClient().create(ApiRequest.class);
+        Call<ResponsModel> update2 = api2.hapus_hewan(id);
+
+        update2.enqueue(new Callback<ResponsModel>() {
+            @Override
+            public void onResponse(Call<ResponsModel> call, Response<ResponsModel> response) {
+                Log.d("Retro", "Response_tes");
+                Toast.makeText(detail_hewan.this, "kode" + response.body().getKode(), Toast.LENGTH_SHORT);
+                Log.i("kodeeee", "onResponse: "+response.body().getKode());
+                if (response.body().getKode().equals("0")) {
+                    Log.i("kodeeee", "onResponse: "+response.body().getKode());
+                    // berhail();
+                    Toast.makeText(detail_hewan.this, "Berhasil hapus hewan", Toast.LENGTH_SHORT).show();
+
+                    dialog.dismiss();
+
+                }
+                if (response.body().getKode().equals("1")) {
+                    Toast.makeText(detail_hewan.this, "Password Lama Salah", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(menu_profil_pejabat_pejabat.this, response.body().getPesan(), Toast.LENGTH_SHORT);
+                    // edit_gagal("Passwod Lama Salah");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponsModel> call, Throwable t) {
+                // Pd.hide();
+                Log.i("Retro", "OnFailure" + t);
+                //Toast.makeText(menu_profil_pejabat.this, "gagal update", Toast.LENGTH_SHORT);
+            }
+        });
     }
 }

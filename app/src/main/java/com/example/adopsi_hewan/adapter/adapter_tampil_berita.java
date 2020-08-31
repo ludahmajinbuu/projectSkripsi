@@ -64,7 +64,7 @@ public class adapter_tampil_berita extends RecyclerView.Adapter<adapter_tampil_b
 
 
         Glide.with(ctx)
-                .load("http://192.168.43.14/adopsi/gambar/"+dm.getFotoInfo())
+                .load("http://192.168.43.109/adopsi/gambar/"+dm.getFotoInfo())
                 .apply(new RequestOptions()
                         .fitCenter()
                         .error(R.drawable.ic_map_black_48dp))

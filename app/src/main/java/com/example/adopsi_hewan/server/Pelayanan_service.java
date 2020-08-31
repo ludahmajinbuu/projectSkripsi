@@ -18,6 +18,13 @@ public interface Pelayanan_service {
             @Field("no_hp") String no_hp,
             @Field("token") String token);
 
+
+    @FormUrlEncoded
+    @POST("edit_foto.php")
+    Call<BaseResponse> edit_foto(@Field("foto") String foto,
+                                 @Field("nik") String nik);
+
+
     //data bukan warga jambi
     @FormUrlEncoded
     @POST("simpan_data_hewan.php")
