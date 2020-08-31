@@ -518,6 +518,7 @@ public class menu_profil extends AppCompatActivity {
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_edit_email);
                 dialog.setCancelable(true);
+                //fffjkjkbjk
 
                 lp = new WindowManager.LayoutParams();
                 lp.copyFrom(dialog.getWindow().getAttributes());
