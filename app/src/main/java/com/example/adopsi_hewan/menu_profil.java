@@ -468,7 +468,7 @@ public class menu_profil extends AppCompatActivity {
                 dialog.setTitle("Login");
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_edit_no);
-                dialog.setCancelable(false);
+                dialog.setCancelable(true);
 
                 WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
                 lp.copyFrom(dialog.getWindow().getAttributes());
@@ -517,7 +517,7 @@ public class menu_profil extends AppCompatActivity {
                 dialog.setTitle("Login");
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_edit_email);
-                dialog.setCancelable(false);
+                dialog.setCancelable(true);
 
                 lp = new WindowManager.LayoutParams();
                 lp.copyFrom(dialog.getWindow().getAttributes());
