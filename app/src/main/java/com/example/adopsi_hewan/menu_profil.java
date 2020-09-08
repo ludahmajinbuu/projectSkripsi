@@ -82,6 +82,16 @@ public class menu_profil extends AppCompatActivity {
     ImageView btnEditNo;
     @BindView(R.id.btn_eidt_email)
     ImageView btnEidtEmail;
+    @BindView(R.id.btn_edit_alamat)
+    ImageView btnEditAlamat;
+    @BindView(R.id.btn_edit_kelamin)
+    ImageView btnEditKelamin;
+    @BindView(R.id.btn_edit_kerja)
+    ImageView btnEditKerja;
+    @BindView(R.id.btn_edit_nama)
+    ImageView btnEditNama;
+    @BindView(R.id.btn_edit_kawin)
+    ImageView btnEditKawin;
     public final int SELECT_FILE = 1;
     private List<ResultItem_profil> data = new ArrayList<ResultItem_profil>();
     private static String imageStoragePath;
@@ -459,7 +469,7 @@ public class menu_profil extends AppCompatActivity {
         });
     }
 
-    @OnClick({R.id.btn_edit_no, R.id.btn_eidt_email})
+    @OnClick({R.id.btn_edit_no, R.id.btn_eidt_email, R.id.btn_edit_nama, R.id.btn_edit_kelamin, R.id.btn_edit_alamat, R.id.btn_edit_kawin, R.id.btn_edit_kerja})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_edit_no:
@@ -510,6 +520,7 @@ public class menu_profil extends AppCompatActivity {
 
 
                 break;
+
             case R.id.btn_eidt_email:
 
                 dialog = new BottomSheetDialog(this);
@@ -557,6 +568,249 @@ public class menu_profil extends AppCompatActivity {
 
                 dialog.show();
                 break;
+
+            case R.id.btn_edit_nama:
+
+                dialog = new BottomSheetDialog(this);
+
+                dialog.setTitle("Login");
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_edit_nama);
+                dialog.setCancelable(true);
+                //fffjkjkbjk
+
+                lp = new WindowManager.LayoutParams();
+                lp.copyFrom(dialog.getWindow().getAttributes());
+                dialog.getWindow().setAttributes(lp);
+                dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                dialog.getWindow().setDimAmount(0.5f);
+                ButterKnife.bind(this);
+
+
+                lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+                lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+
+                no_hp = (EditText) dialog.findViewById(R.id.edit_no);
+                no_hp.setText(txtNmaPro.getText());
+
+
+                no_hp.requestFocus();
+                btn_edit = (Button) dialog.findViewById(R.id.btn_edit_pw);
+
+
+                btn_edit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (no_hp.getText().toString().trim().equals("")){
+                            Toast.makeText(menu_profil.this, "Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                        }else {
+                            edit_nama();
+                        }
+
+
+
+
+                    }
+                });
+
+                dialog.show();
+                break;
+
+            case R.id.btn_edit_kelamin:
+
+                dialog = new BottomSheetDialog(this);
+
+                dialog.setTitle("Login");
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_edit_kelamin);
+                dialog.setCancelable(true);
+                //fffjkjkbjk
+
+                lp = new WindowManager.LayoutParams();
+                lp.copyFrom(dialog.getWindow().getAttributes());
+                dialog.getWindow().setAttributes(lp);
+                dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                dialog.getWindow().setDimAmount(0.5f);
+                ButterKnife.bind(this);
+
+
+                lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+                lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+
+                no_hp = (EditText) dialog.findViewById(R.id.edit_no);
+                no_hp.setText(txtKelPro.getText());
+
+
+                no_hp.requestFocus();
+                btn_edit = (Button) dialog.findViewById(R.id.btn_edit_pw);
+
+
+                btn_edit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (no_hp.getText().toString().trim().equals("")){
+                            Toast.makeText(menu_profil.this, "Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                        }else {
+                            edit_kelamin();
+                        }
+
+
+
+
+                    }
+                });
+
+                dialog.show();
+                break;
+
+            case R.id.btn_edit_alamat:
+
+                dialog = new BottomSheetDialog(this);
+
+                dialog.setTitle("Login");
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_edit_alamat);
+                dialog.setCancelable(true);
+                //fffjkjkbjk
+
+                lp = new WindowManager.LayoutParams();
+                lp.copyFrom(dialog.getWindow().getAttributes());
+                dialog.getWindow().setAttributes(lp);
+                dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                dialog.getWindow().setDimAmount(0.5f);
+                ButterKnife.bind(this);
+
+
+                lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+                lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+
+                no_hp = (EditText) dialog.findViewById(R.id.edit_no);
+                no_hp.setText(txtAlaPro.getText());
+
+
+                no_hp.requestFocus();
+                btn_edit = (Button) dialog.findViewById(R.id.btn_edit_pw);
+
+
+                btn_edit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (no_hp.getText().toString().trim().equals("")){
+                            Toast.makeText(menu_profil.this, "Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                        }else {
+                            edit_alamat();
+                        }
+
+
+
+
+                    }
+                });
+
+                dialog.show();
+                break;
+
+            case R.id.btn_edit_kerja:
+
+                dialog = new BottomSheetDialog(this);
+
+                dialog.setTitle("Login");
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_edit_pekerjaan);
+                dialog.setCancelable(true);
+                //fffjkjkbjk
+
+                lp = new WindowManager.LayoutParams();
+                lp.copyFrom(dialog.getWindow().getAttributes());
+                dialog.getWindow().setAttributes(lp);
+                dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                dialog.getWindow().setDimAmount(0.5f);
+                ButterKnife.bind(this);
+
+
+                lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+                lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+
+                no_hp = (EditText) dialog.findViewById(R.id.edit_no);
+                no_hp.setText(txtKrjaPro.getText());
+
+
+                no_hp.requestFocus();
+                btn_edit = (Button) dialog.findViewById(R.id.btn_edit_pw);
+
+
+                btn_edit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (no_hp.getText().toString().trim().equals("")){
+                            Toast.makeText(menu_profil.this, "Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                        }else {
+                            edit_pekerjaan();
+                        }
+
+
+
+
+                    }
+                });
+
+                dialog.show();
+                break;
+
+            case R.id.btn_edit_kawin:
+
+                dialog = new BottomSheetDialog(this);
+
+                dialog.setTitle("Login");
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_edit_statukawin);
+                dialog.setCancelable(true);
+                //fffjkjkbjk
+
+                lp = new WindowManager.LayoutParams();
+                lp.copyFrom(dialog.getWindow().getAttributes());
+                dialog.getWindow().setAttributes(lp);
+                dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                dialog.getWindow().setDimAmount(0.5f);
+                ButterKnife.bind(this);
+
+
+                lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+                lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+
+                no_hp = (EditText) dialog.findViewById(R.id.edit_no);
+                no_hp.setText(txtStsPro.getText());
+
+
+                no_hp.requestFocus();
+                btn_edit = (Button) dialog.findViewById(R.id.btn_edit_pw);
+
+
+                btn_edit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (no_hp.getText().toString().trim().equals("")){
+                            Toast.makeText(menu_profil.this, "Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                        }else {
+                            edit_status_kawin();
+                        }
+
+
+
+
+                    }
+                });
+
+                dialog.show();
+                break;
+
+
+
         }
     }
     void up_no() {
@@ -634,5 +888,196 @@ public class menu_profil extends AppCompatActivity {
             }
         });
     }
+
+    void edit_nama() {
+
+        ApiRequest api2 = Retroserver.getClient().create(ApiRequest.class);
+        Call<ResponsModel> update2 = api2.edit_nama(
+                nik,
+                no_hp.getText().toString().trim());
+
+        update2.enqueue(new Callback<ResponsModel>() {
+            @Override
+            public void onResponse(Call<ResponsModel> call, Response<ResponsModel> response) {
+                Log.d("Retro", "Response_tes");
+                Toast.makeText(menu_profil.this, "kode" + response.body().getKode(), Toast.LENGTH_SHORT);
+                Log.i("kodeeee", "onResponse: "+response.body().getKode());
+                if (response.body().getKode().equals("0")) {
+                    Log.i("kodeeee", "onResponse: "+response.body().getKode());
+                    // berhail();
+                    Toast.makeText(menu_profil.this, "Berhasil Ubah Nama", Toast.LENGTH_SHORT).show();
+
+                    dialog.dismiss();
+
+                }
+                if (response.body().getKode().equals("1")) {
+                    Toast.makeText(menu_profil.this, "Password Lama Salah", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(menu_profil_pejabat_pejabat.this, response.body().getPesan(), Toast.LENGTH_SHORT);
+                    // edit_gagal("Passwod Lama Salah");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponsModel> call, Throwable t) {
+                // Pd.hide();
+                Log.i("Retro", "OnFailure" + t);
+                //Toast.makeText(menu_profil_pejabat.this, "gagal update", Toast.LENGTH_SHORT);
+            }
+        });
+    }
+
+    void edit_alamat() {
+
+        ApiRequest api2 = Retroserver.getClient().create(ApiRequest.class);
+        Call<ResponsModel> update2 = api2.edit_alamat(
+                nik,
+                no_hp.getText().toString().trim());
+
+        update2.enqueue(new Callback<ResponsModel>() {
+            @Override
+            public void onResponse(Call<ResponsModel> call, Response<ResponsModel> response) {
+                Log.d("Retro", "Response_tes");
+                Toast.makeText(menu_profil.this, "kode" + response.body().getKode(), Toast.LENGTH_SHORT);
+                Log.i("kodeeee", "onResponse: "+response.body().getKode());
+                if (response.body().getKode().equals("0")) {
+                    Log.i("kodeeee", "onResponse: "+response.body().getKode());
+                    // berhail();
+                    Toast.makeText(menu_profil.this, "Berhasil Ubah Alamat", Toast.LENGTH_SHORT).show();
+
+                    dialog.dismiss();
+
+                }
+                if (response.body().getKode().equals("1")) {
+                    Toast.makeText(menu_profil.this, "Password Lama Salah", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(menu_profil_pejabat_pejabat.this, response.body().getPesan(), Toast.LENGTH_SHORT);
+                    // edit_gagal("Passwod Lama Salah");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponsModel> call, Throwable t) {
+                // Pd.hide();
+                Log.i("Retro", "OnFailure" + t);
+                //Toast.makeText(menu_profil_pejabat.this, "gagal update", Toast.LENGTH_SHORT);
+            }
+        });
+    }
+
+    void edit_pekerjaan() {
+
+        ApiRequest api2 = Retroserver.getClient().create(ApiRequest.class);
+        Call<ResponsModel> update2 = api2.edit_pekerjaan(
+                nik,
+                no_hp.getText().toString().trim());
+
+        update2.enqueue(new Callback<ResponsModel>() {
+            @Override
+            public void onResponse(Call<ResponsModel> call, Response<ResponsModel> response) {
+                Log.d("Retro", "Response_tes");
+                Toast.makeText(menu_profil.this, "kode" + response.body().getKode(), Toast.LENGTH_SHORT);
+                Log.i("kodeeee", "onResponse: "+response.body().getKode());
+                if (response.body().getKode().equals("0")) {
+                    Log.i("kodeeee", "onResponse: "+response.body().getKode());
+                    // berhail();
+                    Toast.makeText(menu_profil.this, "Berhasil Ubah Data", Toast.LENGTH_SHORT).show();
+
+                    dialog.dismiss();
+
+                }
+                if (response.body().getKode().equals("1")) {
+                    Toast.makeText(menu_profil.this, "Password Lama Salah", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(menu_profil_pejabat_pejabat.this, response.body().getPesan(), Toast.LENGTH_SHORT);
+                    // edit_gagal("Passwod Lama Salah");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponsModel> call, Throwable t) {
+                // Pd.hide();
+                Log.i("Retro", "OnFailure" + t);
+                //Toast.makeText(menu_profil_pejabat.this, "gagal update", Toast.LENGTH_SHORT);
+            }
+        });
+    }
+
+    void edit_kelamin() {
+
+        ApiRequest api2 = Retroserver.getClient().create(ApiRequest.class);
+        Call<ResponsModel> update2 = api2.edit_kelamin(
+                nik,
+                no_hp.getText().toString().trim());
+
+        update2.enqueue(new Callback<ResponsModel>() {
+            @Override
+            public void onResponse(Call<ResponsModel> call, Response<ResponsModel> response) {
+                Log.d("Retro", "Response_tes");
+                Toast.makeText(menu_profil.this, "kode" + response.body().getKode(), Toast.LENGTH_SHORT);
+                Log.i("kodeeee", "onResponse: "+response.body().getKode());
+                if (response.body().getKode().equals("0")) {
+                    Log.i("kodeeee", "onResponse: "+response.body().getKode());
+                    // berhail();
+                    Toast.makeText(menu_profil.this, "Berhasil Ubah Email", Toast.LENGTH_SHORT).show();
+
+                    dialog.dismiss();
+
+                }
+                if (response.body().getKode().equals("1")) {
+                    Toast.makeText(menu_profil.this, "Password Lama Salah", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(menu_profil_pejabat_pejabat.this, response.body().getPesan(), Toast.LENGTH_SHORT);
+                    // edit_gagal("Passwod Lama Salah");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponsModel> call, Throwable t) {
+                // Pd.hide();
+                Log.i("Retro", "OnFailure" + t);
+                //Toast.makeText(menu_profil_pejabat.this, "gagal update", Toast.LENGTH_SHORT);
+            }
+        });
+    }
+
+    void edit_status_kawin() {
+
+        ApiRequest api2 = Retroserver.getClient().create(ApiRequest.class);
+        Call<ResponsModel> update2 = api2.edit_status_kawin(
+                nik,
+                no_hp.getText().toString().trim());
+
+        update2.enqueue(new Callback<ResponsModel>() {
+            @Override
+            public void onResponse(Call<ResponsModel> call, Response<ResponsModel> response) {
+                Log.d("Retro", "Response_tes");
+                Toast.makeText(menu_profil.this, "kode" + response.body().getKode(), Toast.LENGTH_SHORT);
+                Log.i("kodeeee", "onResponse: "+response.body().getKode());
+                if (response.body().getKode().equals("0")) {
+                    Log.i("kodeeee", "onResponse: "+response.body().getKode());
+                    // berhail();
+                    Toast.makeText(menu_profil.this, "Berhasil Ubah Data", Toast.LENGTH_SHORT).show();
+
+                    dialog.dismiss();
+
+                }
+                if (response.body().getKode().equals("1")) {
+                    Toast.makeText(menu_profil.this, "Password Lama Salah", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(menu_profil_pejabat_pejabat.this, response.body().getPesan(), Toast.LENGTH_SHORT);
+                    // edit_gagal("Passwod Lama Salah");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponsModel> call, Throwable t) {
+                // Pd.hide();
+                Log.i("Retro", "OnFailure" + t);
+                //Toast.makeText(menu_profil_pejabat.this, "gagal update", Toast.LENGTH_SHORT);
+            }
+        });
+    }
+
 
 }

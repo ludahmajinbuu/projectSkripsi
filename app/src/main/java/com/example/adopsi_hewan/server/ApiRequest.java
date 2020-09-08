@@ -29,7 +29,7 @@ public interface ApiRequest {
     Call<Response_hewan_new> Get_data_hewan();
 
     @GET("get_data_hewan_suskes_adopsi.php")
-    Call<Response_hewan_new> get_data_hewan_suskes_adopsi();
+    Call<Response_hewan_new> get_data_hewan_suskes_adopsi(@Query("nik") String nik);
 
     @GET("get_data_hewan_verifikasi_admin.php")
     Call<Response_hewan_new> get_data_hewan_verifikasi_admin();
@@ -63,6 +63,36 @@ public interface ApiRequest {
     @FormUrlEncoded
     @POST("edit_email.php")
     Call<ResponsModel> edit_email(
+            @Field("nik") String nik,
+            @Field("nohp") String nohp);
+
+    @FormUrlEncoded
+    @POST("edit_nama.php")
+    Call<ResponsModel> edit_nama(
+            @Field("nik") String nik,
+            @Field("nohp") String nohp);
+
+    @FormUrlEncoded
+    @POST("edit_kelamin.php")
+    Call<ResponsModel> edit_kelamin(
+            @Field("nik") String nik,
+            @Field("nohp") String nohp);
+
+    @FormUrlEncoded
+    @POST("edit_alamat.php")
+    Call<ResponsModel> edit_alamat(
+            @Field("nik") String nik,
+            @Field("nohp") String nohp);
+
+    @FormUrlEncoded
+    @POST("edit_status_kawin.php")
+    Call<ResponsModel> edit_status_kawin(
+            @Field("nik") String nik,
+            @Field("nohp") String nohp);
+
+    @FormUrlEncoded
+    @POST("edit_pekerjaan.php")
+    Call<ResponsModel> edit_pekerjaan(
             @Field("nik") String nik,
             @Field("nohp") String nohp);
 

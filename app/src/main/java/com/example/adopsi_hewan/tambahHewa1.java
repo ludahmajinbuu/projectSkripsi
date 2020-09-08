@@ -338,7 +338,7 @@ public class tambahHewa1 extends AppCompatActivity implements Validator.Validati
     void dialog_register_berhsail() {
         AlertDialog.Builder builder = new AlertDialog.Builder(tambahHewa1.this);
         builder.setCancelable(false);
-        builder.setMessage("Register Berhasil ...");
+        builder.setMessage("Data Berhasil Diinput...");
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

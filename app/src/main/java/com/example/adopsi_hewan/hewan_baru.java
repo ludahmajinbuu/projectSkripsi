@@ -1,15 +1,5 @@
 package com.example.adopsi_hewan;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -31,6 +21,16 @@ import com.example.adopsi_hewan.server.Retroserver;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class hewan_baru extends AppCompatActivity {
 
@@ -110,7 +110,7 @@ public class hewan_baru extends AppCompatActivity {
         }else if (staus_hewan.equals("2")){
             call =  api.get_data_hewan_verifikasi_pemilik_hewan(nik);
         }else if (staus_hewan.equals("3")){
-            call =  api.get_data_hewan_suskes_adopsi();
+            call =  api.get_data_hewan_suskes_adopsi(nik);
         }else {
             call =  api.get_data_hewan_verifikasi_admin();
         }

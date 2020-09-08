@@ -71,7 +71,7 @@
                 <ImageView
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                     />
+                    />
 
                 <TextView
                     android:id="@+id/txtJnsHwanDtl"
@@ -214,34 +214,38 @@
                     android:paddingLeft="20dp"
                     android:text="Alasan"
                     android:textColor="#D83030"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <Button
                     android:id="@+id/btn_tidak"
-                    android:layout_width="180dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="8dp"
                     android:backgroundTint="#607D8B"
                     android:text="TIDAK SETUJU"
-                    android:textColor="#fff" />
+                    android:textColor="#fff"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
 
                 <Button
                     android:id="@+id/btn_adop"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="35dp"
                     android:backgroundTint="#607D8B"
                     android:text="Adopsi"
-                    android:textColor="#fff" />
+                    android:textColor="#fff"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
             </LinearLayout>
 
             <Button
@@ -252,7 +256,9 @@
                 android:layout_marginTop="8dp"
                 android:backgroundTint="#607D8B"
                 android:text="PANGGIL"
-                android:textColor="#fff" />
+                android:textColor="#fff"
+                android:visibility="gone"
+                tools:visibility="visible" />
 
             <Button
                 android:id="@+id/btn_hapus"
@@ -263,7 +269,8 @@
                 android:backgroundTint="#607D8B"
                 android:text="HAPUS"
                 android:textColor="#fff"
-                android:visibility="gone" />
+                android:visibility="gone"
+                tools:visibility="visible" />
 
         </LinearLayout>
 

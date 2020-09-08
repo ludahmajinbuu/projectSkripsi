@@ -136,33 +136,50 @@ public class detail_hewan extends AppCompatActivity {
                 .centerCrop()
                 .into(imgHewandetail);
 
-
-        Log.i("data_nik", "onCreate: "+nik+" "+nik_pemilik_hewan);
-
-        if (nik.equals(nik_pemilik_hewan)){
-            btn_adop.setVisibility(View.GONE);
+        if (nik.equals(nik_pemilik_hewan)&&status_hewan.equals("1")){
             btnHapus.setVisibility(View.VISIBLE);
-        }else{
-            if (status_hewan.equals("2")) {
-                btn_adop.setText("SETUJUI");
-                btnPanggil.setVisibility(View.GONE);
-            } else if (status_hewan.equals("1")) {
-                txtAlasan.setVisibility(View.GONE);
-                btnPanggil.setVisibility(View.GONE);
-                btn_tidak.setVisibility(View.GONE);
-                btn_adop.setText("ADOPSI");
-            } else if (status_hewan.equals("0")) {
-                btnPanggil.setVisibility(View.GONE);
-                txtAlasan.setVisibility(View.GONE);
-                btn_tidak.setVisibility(View.GONE);
-                btn_adop.setText("SETUJUI");
-            } else {
-                txtAlasan.setVisibility(View.GONE);
-                btn_tidak.setVisibility(View.GONE);
-                btn_adop.setVisibility(View.GONE);
-            }
+        }else if (status_hewan.equals("1")){
+            btn_adop.setVisibility(View.VISIBLE);
+            btn_adop.setText("ADOPSI");
+        }else if (status_hewan.equals("2")){
+            txtAlasan.setVisibility(View.VISIBLE);
+            btn_tidak.setVisibility(View.VISIBLE);
+            btn_adop.setVisibility(View.VISIBLE);
+            btn_adop.setText("SETUJU");
+        }else {
+            btnPanggil.setVisibility(View.VISIBLE);
+
         }
 
+//        if (status_hewan.equals("2")) {
+//            btn_adop.setText("SETUJUI");
+//            btnPanggil.setVisibility(View.GONE);
+//        } else if (status_hewan.equals("1")) {
+//            txtAlasan.setVisibility(View.GONE);
+//            btnPanggil.setVisibility(View.GONE);
+//            btn_tidak.setVisibility(View.GONE);
+//            btn_adop.setText("ADOPSI");
+//        } else if (status_hewan.equals("0")) {
+//            btnPanggil.setVisibility(View.GONE);
+//            txtAlasan.setVisibility(View.GONE);
+//            btn_tidak.setVisibility(View.GONE);
+//            btn_adop.setText("SETUJUI");
+//        } else {
+//            txtAlasan.setVisibility(View.GONE);
+//            btn_tidak.setVisibility(View.GONE);
+//            btn_adop.setVisibility(View.GONE);
+//        }
+//        Log.i("data_nik", "onCreate: "+nik+" "+nik_pemilik_hewan);
+//
+//        if (nik.equals(nik_pemilik_hewan)){
+//            btn_adop.setVisibility(View.GONE);
+//            btnHapus.setVisibility(View.VISIBLE);
+//        }else if (status_hewan.equals("3")){
+//            btnHapus.setVisibility(View.GONE);
+//
+//        }else {
+//            btn_adop.setVisibility(View.VISIBLE);
+//        }
         GET_profil();
 
     }
@@ -446,7 +463,7 @@ public class detail_hewan extends AppCompatActivity {
 
                         for (int i = 0; i < data.size(); i++) {
 
-                            phone = data.get(i).getAlamat();
+                            phone = data.get(i).getNohp();
                         }
                     }
 

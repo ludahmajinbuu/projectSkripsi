@@ -67,7 +67,7 @@
                 android:layout_marginEnd="16dp"
                 android:focusable="true"
                 android:ems="10"
-                android:hint="NIK"
+                android:hint="Email"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -41,7 +41,7 @@
         <activity android:name=".detail_hewan"
             android:label="Detail Hewan"/>
         <activity android:name=".menu_profil"
-            android:label="Pefil User"/>
+            android:label="Profil User"/>
         <activity android:name=".menu_utama"
             android:label="Menu Utama"/>
         <activity android:name=".menu_register" />

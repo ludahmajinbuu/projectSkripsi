@@ -1,7 +1,7 @@
 package com.example.adopsi_hewan;
 
-import android.content.Context;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -45,5 +45,8 @@ public class menu_detail_informasi extends AppCompatActivity {
                 .centerCrop()
                 .into(bgImg);
 
+
+        TextView tv = (TextView) findViewById(R.id.txt_isi);
+        tv.setMovementMethod(new ScrollingMovementMethod());
     }
 }
